@@ -7,6 +7,7 @@ import firebase from 'firebase'
 import VueOnsen from 'vue-onsenui'; // This imports 'onsenui', so no need to import it separately
 import 'onsenui/css/onsenui.css';
 import 'onsenui/css/onsen-css-components.css';
+import vuetify from './plugins/vuetify';
 
 Vue.use(VueOnsen); // VueOnsen set here as plugin to VUE. Done automatically if a call to window.Vue exists in the startup code.
 
@@ -16,6 +17,8 @@ new Vue({
   router,
   store,
   render: h => h(App),
+  vuetify,
+
   created(){
     firebase.initializeApp({
       apiKey: "AIzaSyArRl2HUZe73-3cFoEereimC3eNiDaDuSw",
