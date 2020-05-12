@@ -1,143 +1,91 @@
-<template>
-  <div class="background-login">
-    <v-container class="backgroundLogin-cell">   
-      <v-layout justify-center style="margin-bottom: -40px;">
-        <v-flex xs12>
-          <img class="logoImg" src="../../imagens/logo-ipsum.svg" alt="Logo">
-        </v-flex>
-      </v-layout>
-      <v-layout align-center justify-center>
-        <v-flex xs10 sm7 md5 lg4 xl3>
-          <v-card elevation="0" style="max-width: 380px; margin-left: auto; margin-right: auto;" text dark color="rgb(1, 11, 22, 0)">
-            <v-card-text style="padding: 0; margin: 0;">
-              <v-container>
-                <form @submit.prevent="onsignIn">
-                  <v-flex xs12>
-                    <v-text-field
-                    light
-                    hide-details
-                    style="border-radius: 0px"
-                    background-color="white"
-                    color="#757575"
-                    class="v-text-field-input my-4"                                        
-                    name="email"
-                    label="Email"
-                    placeholder=""
-                    id="email"
-                    v-model="login.email"
-                    type="email"
-                    required
-                    outlined
-                    single-line></v-text-field>
-                  </v-flex>
-                  <v-flex xs12>
-                    <v-text-field
-                    light
-                    hide-details
-                    style="border-radius: 0px"
-                    background-color="white"
-                    color="#757575" 
-                    class="v-text-field-input my-4"          
-                    name="password"
-                    label="Senha"
-                    placeholder=""
-                    id="password"
-                    v-model="login.password"
-                    type="password"
-                    required 
-                    outlined
-                    single-line></v-text-field>
-                  </v-flex>
-                  
-                  <v-layout>
-                    <v-flex xs6 mr-1>
-                      <v-btn tile depressed outlined height="56" color="white" class="font-size" style="background-image: linear-gradient(to right,#ef2929,#f05429); border: 1px solid #ef2929; width: 100%;" dark type="submit" :disabled="login.loading" :loading="login.loading">
-                        Entrar
-                        <span slot="loader" class="custom-loader">
-                          <v-icon light>cached</v-icon>
-                        </span>
-                      </v-btn>
-                    </v-flex>
-                    <v-flex xs6 ml-1>
-                      <v-btn tile depressed outlined height="56" color="white" class="font-size" style="background-image: linear-gradient(to right,#ef2929,#f05429); border: 1px solid #ef2929; width: 100%;" dark type="submit" :disabled="login.loading" :loading="login.loading">
-                        Cadastrar
-                        <!-- <span slot="loader" class="custom-loader">
-                          <v-icon light>cached</v-icon>
-                        </span> -->
-                      </v-btn>
-                    </v-flex>
-                  </v-layout>
-                  <v-flex xs12 ma-1 style="position: relative">
-                    <v-btn style="left: 50%; transform: translate(-50%, 0%); text-transform: none" text color="white">
-                      Esqueceu sua senha?
-                    </v-btn>
-                  </v-flex>
-                  <v-layout>
-                    <v-flex xs6 mr-1>
-                      <v-btn style="width: 100%" rounded x-large color="#d34836" @click="google" class="my-1 font-style font-size">
-                        <v-icon color="white" left>fab fa-google</v-icon>
-                        <span class="hidden-sm-and-up" style="font-size: 14px">Google</span>
-                        <span class="hidden-xs-only">Google</span>
-                      </v-btn>
-                    </v-flex>
-                    <v-flex xs6 ml-1>
-                      <v-btn style="width: 100%" rounded x-large color="#3b5998" @click="facebook" class="my-1 font-style font-size">
-                        <v-icon color="white" left>fab fa-facebook</v-icon>
-                        <span class="hidden-sm-and-up" style="font-size: 12px">Facebook</span>
-                        <span class="hidden-xs-only">Google</span>
-                      </v-btn>
-                    </v-flex>
-                  </v-layout>
-                </form>
-              </v-container>
-            </v-card-text>
-          </v-card>
-        </v-flex>
-      </v-layout>
-    </v-container>
-  </div>
+<template lang='pug'>
+  v-ons-page
+    v-ons-toolbar(modifier='transparent' :visible='$route.meta.showToolbar')
+      .center Title
+    .background
+    .content
+      v-ons-row.backgroundLogin-cell(vertical-align='center')
+        v-ons-col(width='100%')
+          v-ons-row(vertical-align='center' style='justify-content: center')
+            v-ons-col
+              img.logoImg(style='max-width: 600px;' src='../../imagens/logo-ipsum copy.svg' alt='Logo')
+          form(@submit.prevent='onsignIn')
+            v-ons-row(vertical-align='center' style='width: 100%; padding: 0 16px;')
+              v-ons-col(width='100%')
+                v-row(style='width: 100%' justify='space-around' no-gutters)
+                  v-col(cols='12' style='padding: 0 5px 0 10px;')
+                    v-text-field(v-model='login.email' label="E-mail" dark hide-details style='margin-bottom: 15px')
+                      template(v-slot:prepend-inner)
+                        v-icon(style='margin: 0 10px;') mdi-at
+                  v-col(cols='12' style='padding: 0 5px 0 10px;')
+                    v-text-field(v-model='login.password' label="Senha" type='password' dark hide-details style='margin-bottom: 30px;')
+                      template(v-slot:prepend-inner)
+                        v-icon(style='margin: 0 10px;') mdi-lock
+                  v-col(cols='12' style='padding: 0 5px 0 10px;')
+                    v-ons-row(style='justify-content: center;')
+                      ons-button.font1.custom-button(@click='google' :disabled='loading.join' style='max-width: 200px; width: 100%; text-align: center;')
+                        | Entrar
+                  v-col(cols='12' style='padding: 0 10px 0 5px;')
+                    ons-button.font1.button-text(@click='google' :disabled='loading.join' modifier='quiet' style='width: 100%; text-align: center;')
+                      | Esqueceu a senha?
+      v-ons-row(width='100%' style='position: absolute; bottom: 0; margin-bottom: 20px')
+        v-ons-row(style='justify-content: center;')
+          v-ons-fab(modifier='mini' style='margin-right: 6px;')
+            v-ons-icon(icon='fa-google' size='22px')
+          v-ons-fab(modifier='mini' style='margin-left: 6px;')
+            v-ons-icon(icon='fa-facebook' size='22px')
+        v-ons-row
+          ons-button.font1.button-text(@click='google' :disabled='loading.join' modifier='quiet' style='width: 100%; text-align: center;')
+            | Já tem uma conta? Entre agora
 </template>
 
 <script>
 export default {
-    name: 'login',
-    data () {
-      return {
-        login: {
-          email: '',
-          password: '',
-          loading: false
-        }
-      }
-    },
-    methods: {
-      onsignUp(){
-        // this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
+  name: 'login',
+  data () {
+    return {
+      login: {
+        email: '',
+        password: '',
+        loading: false
       },
-      google() {
-        // this.$store.dispatch('signUserGoogle')
-      },
-      facebook() {
-        // this.$store.dispatch('signUserFacebook')
+      loading: {
+        join: false,
       }
     }
+  },
+  methods: {
+    onsignUp(){
+      // this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
+    },
+    google() {
+      // this.$store.dispatch('signUserGoogle')
+    },
+    facebook() {
+      // this.$store.dispatch('signUserFacebook')
+    },
+    onsignIn () {
+      //
+    }
+  }
 }
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
-  .background-login {
+  .content {
     height: 100vh;
     width: 100vw;
-    background-image: url('../../imagens/shutterstock_649876828(2).jpg');
+  }
+  .background {
+    background-image: url('../../imagens/background-login-muie(3).png');
     background-origin: content-box;
     background-position: center;
     background-size: cover;
-    display: table;
   }
   .backgroundLogin-cell {
-    display: table-cell;
-    vertical-align: middle;
+    height: 100%;
+    padding: 12px;
   }
   .logoImg {
     width: 100%;
@@ -150,5 +98,39 @@ export default {
   }
   .font-size {
     font-size: 14px !important;
+  }
+  .text-input--material__label--active {
+    color: rgb(255, 0, 0) !important;
+  }
+  .text-input--material:focus {
+    background-image: -webkit-linear-gradient(rgb(255, 0, 0), red), -webkit-linear-gradient(bottom, transparent 1px, #afafaf 1px) !important;
+    background-image: linear-gradient(red, red), linear-gradient(to top, transparent 1px, #afafaf 1px) !important;
+  }
+  .text-input {
+    color: white !important;
+  }
+  .search-bar { 
+    background-color: white !important;
+  }
+  .font1 {
+    font-weight: 500 !important;
+    font-family: roboto !important;
+    font-size: 0.875rem !important;
+  }
+  .custom-button {
+    border-radius: 25px;
+    text-transform: uppercase;
+    background: rgb(239,41,41) !important;
+    background: linear-gradient(90deg, rgba(239,41,41,1) 0%, rgba(240,84,41,1) 45%) !important;
+  }
+  .button-text {
+    color: white !important;
+  }
+  ons-fab.fab {
+    background-color: #212A31 !important;
+    color: white !important;
+  }
+  ons-fab.fab:active {
+    background-color: #212A3150 !important;
   }
 </style>
