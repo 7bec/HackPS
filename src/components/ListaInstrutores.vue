@@ -1,7 +1,7 @@
 <template lang='pug'>
   v-container()
     v-row(no-gutters style='margin-top: 3vh;')
-        v-icon(style='color: black; font-weight: 800;') mdi-arrow-left
+        v-icon(style='color: black; font-weight: 800;') mdi-chevron-left
         span.back.font(style='margin-left: 5px;') Modalidades
     v-row(justify='center' no-gutters style='margin-top: 3vh;')
         v-text-field.search-bar.font(rounded dense flat label="Pesquise por instrutores" prepend-inner-icon="mdi-magnify")
@@ -9,8 +9,8 @@
         span.title-text.font sugestões para você
     v-row(no-gutters style='margin-top: 3vh;' v-for='(i, instrutor) in instrutores' :key='i')
         v-col(cols='4')
-            v-img(src='https://images.pexels.com/photos/3772712/pexels-photo-3772712.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' style='border-radius: 10px;')
-        v-col.font.pl-6(cols='8')
+            v-img(src='https://images.pexels.com/photos/3772711/pexels-photo-3772711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' style='border-radius: 10px;' height="13vh")
+        v-col.font(cols='8' style='padding-left: 30px;')
             v-row()
                 span.instrutor-name() Cláudio Castro
             v-row()
@@ -25,9 +25,8 @@ export default {
     fiery: true,
     data () {
         return {
-            modalidades: this.$fiery(firebase.firestore().collection('modalities')),
             rating: 3.5,
-            instrutores: 5,
+            instrutores: 8,
             starBorder: '#C1C1C1'
         }
     }
