@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import CadastroAluno from '../views/CadastroAluno'
 import EscolhaModalidade from '../views/EscolhaModalidade.vue'
+import EscolhaInstrutor from '../views/EscolhaInstrutor.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,12 @@ Vue.use(VueRouter)
     path: '/escolhamodalidade',
     name: 'EscolhaModalidade',
     component: EscolhaModalidade,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/escolhainstrutor',
+    name: 'EscolhaInstrutor',
+    component: EscolhaInstrutor,
     meta: { showToolbar: false }
   }
 ]

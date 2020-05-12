@@ -1,7 +1,7 @@
 <template lang='pug'>
   v-container(fill-height)
     v-row( align='center' justify='center')
-        v-col(cols='12' v-for='modalidade in modalidades' :key='modalidade' align-self='center' justify='center')
+        v-col(cols='12' v-for='modalidade in modalidades' :key='modalidade.name' align-self='center' justify='center')
             v-row( justify='center' style='margin-bottom: -10px;')
                 v-card.mx-10.rounded-card(max-width="99vw" elevation='0')
                     v-img(:src="modalidade.background_url")
@@ -33,7 +33,7 @@ export default {
     color: white;
     font-family: 'Lato', sans-serif;
     font-weight: 500;
-    font-size: 1.4em;
+    font-size: 1.2em;
     z-index: 10;
 }
 
