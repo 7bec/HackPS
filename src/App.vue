@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <v-app-bar
-      v-if='!$route.meta.showToolbar'
+      v-if='$route.meta.showToolbar'
       app
       color="transparent"
       dark
