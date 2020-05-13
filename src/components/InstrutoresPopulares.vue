@@ -3,22 +3,24 @@
     v-row(no-gutters style='margin-top: 3vh;')
         span.title-text.font instutores populares
     div(style='margin-top: 3vh; overflow-x: auto; white-space: nowrap !important; display: flex;')
-        v-col(cols='5' v-for='(i, instrutor) in instrutoresPopulares' :key='i')
+        v-col(cols='5' v-for='instrutor in instrutoresPopulares' :key='instrutor.name')
             v-row( justify='center')
                 v-avatar(size='100')
-                    img(src='https://images.pexels.com/photos/2803158/pexels-photo-2803158.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260')
+                    img(:src='instrutor.picture_url')
             v-row(justify='center')
                 v-container
-                    span.name.font.text-xs-center Cláudio Castro
+                    span.name.font.text-xs-center {{instrutor.name}}
 </template>
 
 <script>
-import firebase from 'firebase'
 export default {
     fiery: true,
+    props: [
+        'instrutoresPopulares'
+    ],
     data () {
         return {
-            instrutoresPopulares: 5,
+            
 
         }
     }

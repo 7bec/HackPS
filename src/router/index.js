@@ -34,7 +34,7 @@ const routes = [
     meta: { showToolbar: false }
   },
   {
-    path: '/escolhainstrutor',
+    path: '/escolhainstrutor/:modalidade',
     name: 'EscolhaInstrutor',
     component: EscolhaInstrutor,
     meta: { showToolbar: false }

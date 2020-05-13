@@ -2,32 +2,33 @@
   v-container()
     v-row(no-gutters style='margin-top: 3vh;')
         v-icon(style='color: black; font-weight: 800;') mdi-chevron-left
-        span.back.font(style='margin-left: 5px;') Modalidades
     v-row(justify='center' no-gutters style='margin-top: 3vh;')
         v-text-field.search-bar.font(rounded dense flat label="Pesquise por instrutores" prepend-inner-icon="mdi-magnify")
     v-row(no-gutters style='margin-top: 3vh;')
         span.title-text.font sugestões para você
-    v-row(no-gutters style='margin-top: 3vh;' v-for='(i, instrutor) in instrutores' :key='i')
+    v-row(no-gutters style='margin-top: 3vh;' v-for='instrutor in instrutores' :key='instrutor.name')
         v-col(cols='4')
-            v-img(src='https://images.pexels.com/photos/3772711/pexels-photo-3772711.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260' style='border-radius: 10px;' height="13vh")
+            v-img(:src='instrutor.picture_url' style='border-radius: 10px;' height="13vh")
         v-col.font(cols='8' style='padding-left: 30px;')
             v-row()
-                span.instrutor-name() Cláudio Castro
+                span.instrutor-name() {{instrutor.name}}
             v-row()
-                span.quantidade-alunos 20 alunos
+                span.quantidade-alunos {{instrutor.qtd_alunos}} alunos
             v-row()
-                <star-rating v-model="rating" :star-size="15" :show-rating='false' :read-only='true' :glow="0.1"  glow-color='#0xFF' :border-width="0"></star-rating>
+                <star-rating v-model='instrutor.rating' :star-size="15" :increment='0.01' :show-rating='false' :read-only='true' :glow="0.1"  glow-color='#0xFF' :border-width="0"></star-rating>
 </template>
 
 <script>
 import firebase from 'firebase'
 export default {
     fiery: true,
+    props: [
+        'instrutores'
+    ],
     data () {
         return {
-            rating: 3.5,
-            instrutores: 8,
-            starBorder: '#C1C1C1'
+
+
         }
     }
 }
