@@ -35,5 +35,24 @@ new Vue({
       measurementId: "G-YEBDKB814T"
 
     })
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //   var user = firebase.auth().currentUser;
+    //   if (user) {
+    //     const newUser = {
+    //       id: firebase.auth().currentUser.uid,
+    //       photoUrl: firebase.auth().currentUser.photoURL,
+    //       name: firebase.auth().currentUser.displayName,
+    //       email: firebase.auth().currentUser.email
+    //     }
+    //     store.commit('setUser', newUser)
+    //     router.push('/home')
+    //   } else {
+    //     // No user is signed in.
+    //     console.log('Não tem conta')
+    //     router.push('/')
+
+    //   }
+
+    // })
   }
 }).$mount('#app')

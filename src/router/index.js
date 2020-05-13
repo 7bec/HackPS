@@ -5,7 +5,8 @@ import Login from '../views/Login.vue'
 import CadastroAluno from '../views/CadastroAluno'
 import EscolhaModalidade from '../views/EscolhaModalidade.vue'
 import EscolhaInstrutor from '../views/EscolhaInstrutor.vue'
-
+import CadastroProfessor from '../views/CadastroProfessor'
+import EscolhaFuncao from '../views/EscolhaFuncao'
 Vue.use(VueRouter)
 
 const routes = [
@@ -38,7 +39,21 @@ const routes = [
     name: 'EscolhaInstrutor',
     component: EscolhaInstrutor,
     meta: { showToolbar: false }
-  }
+  },
+  {
+    path: '/cadastroProfessor',
+    name: 'CadastroProfessor',
+    component: CadastroProfessor,
+    meta: { showToolbar: false }
+  },
+  
+  {
+    path: '/escolhaFuncao',
+    name: 'EscolhaFuncao',
+    component: EscolhaFuncao,
+    meta: { showToolbar: false }
+  },
+
 ]
 
 const router = new VueRouter({
