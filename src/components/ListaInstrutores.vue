@@ -40,7 +40,7 @@ export default {
     background-color: white !important;
 }
 .font {
-    font-family: 'Lato', sans-serif;
+    font-family: roboto !important;
 }
 .title-text {
     text-transform: uppercase;
@@ -49,7 +49,7 @@ export default {
 
 }
 .back {
-   font-family: 'Lato', sans-serif; 
+   font-family: roboto !important; 
    font-weight: 800;
    font-size: 1.4em;
 }
