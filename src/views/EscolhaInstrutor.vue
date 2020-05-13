@@ -1,7 +1,7 @@
 <template>
     <v-ons-page class="page">
-        <ListaInstrutores :instrutores='instrutores' :style='`height: calc(100vh - ${instrutoresPopularesHeight}px); overflow-y: auto;`'></ListaInstrutores>
-        <InstrutoresPopulares id="instPop" :instrutoresPopulares='instrutoresPopulares'></InstrutoresPopulares>
+        <ListaInstrutores :instrutores='instrutores' :style='`height: calc(100vh - ${instrutoresPopularesHeight}px;); overflow: auto;`'></ListaInstrutores>
+        <InstrutoresPopulares class="bot" id="instPop" :instrutoresPopulares='instrutoresPopulares'></InstrutoresPopulares>
     </v-ons-page>
 </template>
 
@@ -27,6 +27,7 @@ export default {
         
     },
     created () {
+        console.log('PELO AMOR DE DEUS')
         var modalidade = this.$route.params.modalidade
         console.log(modalidade)
         let that = this
@@ -35,7 +36,6 @@ export default {
                 onSuccess: (todos) => {
                     console.log(todos)
                     that.instrutores = todos
-                   
                 }
             })
 
@@ -56,5 +56,10 @@ export default {
 <style scoped>
 .page {
     height: 100vh;
+}
+.bot{
+    position: absolute;
+    bottom: 0;
+    z-index: 9;
 }
 </style>

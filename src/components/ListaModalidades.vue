@@ -7,7 +7,7 @@
                     v-img(:src="modalidade.background_url")
                         v-row(style='width: 100%;')
                             div.overlay
-                            v-row(style='margin-top: 15px;')
+                            v-row(style='margin-top: 15px; margin-left: 20px;')
                                 span.titulo-card {{modalidade.name}}
 </template>
 
