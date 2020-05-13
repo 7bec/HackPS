@@ -23,20 +23,20 @@
                         v-icon(style='margin: 0 10px;') mdi-lock
                   v-col(cols='12' style='padding: 0 5px 0 10px;')
                     v-ons-row(style='justify-content: center;')
-                      ons-button.font1.custom-button(@click='google' :disabled='loading.join' style='max-width: 200px; width: 100%; text-align: center;')
+                      ons-button.font1.custom-button(@click='onsignIn' :disabled='loading.join' style='max-width: 200px; width: 100%; text-align: center;')
                         | Entrar
                   v-col(cols='12' style='padding: 0 10px 0 5px;')
-                    ons-button.font1.button-text(@click='google' :disabled='loading.join' modifier='quiet' style='width: 100%; text-align: center;')
+                    ons-button.font1.button-text( :disabled='loading.join' modifier='quiet' style='width: 100%; text-align: center;')
                       | Esqueceu a senha?
       v-ons-row(width='100%' style='position: absolute; bottom: 0; margin-bottom: 20px')
         v-ons-row(style='justify-content: center;')
           v-ons-fab(modifier='mini' style='margin-right: 6px;')
-            v-ons-icon(icon='fa-google' size='22px')
+            v-ons-icon(@click='google' icon='fa-google' size='22px')
           v-ons-fab(modifier='mini' style='margin-left: 6px;')
             v-ons-icon(icon='fa-facebook' size='22px')
         v-ons-row
-          ons-button.font1.button-text(@click='google' :disabled='loading.join' modifier='quiet' style='width: 100%; text-align: center;')
-            | Já tem uma conta? Entre agora
+          ons-button.font1.button-text(@click='escolhaFuncao' :disabled='loading.join' modifier='quiet' style='width: 100%; text-align: center;')
+            | Não tem uma conta? Entre agora
 </template>
 
 <script>
@@ -56,16 +56,19 @@ export default {
   },
   methods: {
     onsignUp(){
-      // this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
+      this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
     },
     google() {
-      // this.$store.dispatch('signUserGoogle')
+      this.$store.dispatch('signUserGoogle')
     },
     facebook() {
-      // this.$store.dispatch('signUserFacebook')
+      this.$store.dispatch('signUserFacebook')
     },
     onsignIn () {
-      //
+      this.$store.dispatch('signUserIn',{email:this.login.email,password:this.login.password})
+    },
+    escolhaFuncao(){
+      this.$router.push('/escolhaFuncao')
     }
   }
 }
