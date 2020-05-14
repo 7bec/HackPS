@@ -37,16 +37,16 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,700&display=swap');
 .font {
-    font-family: 'Lato', sans-serif;
+    font-family: roboto !important;
 }
 .title-text {
     text-transform: uppercase;
-    color: lightgray;
+    color: black;
     font-weight: 300;
 
 }
 .back {
-   font-family: 'Lato', sans-serif; 
+   font-family: roboto !important; 
    font-weight: 800;
    font-size: 1.4em;
 }
@@ -55,7 +55,7 @@ export default {
 }
 .quantidade-alunos {
     font-weight: 300;
-    color: gray;
+    color: black;
 }
  
 </style>

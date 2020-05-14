@@ -29,17 +29,17 @@ export default {
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,700&display=swap');
 .font {
-    font-family: 'Lato', sans-serif;
+    font-family: roboto !important;
 }
 .title-text {
     text-transform: uppercase;
-    color: lightgray;
+    color: black;
     font-weight: 300;
 
 }
 .name {
     font-weight: 300;
-    color: gray;
+    color: black;
     font-size: 0.8em;
 }
 </style>

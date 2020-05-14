@@ -62,7 +62,7 @@ export default {
 
 .titulo-card {
     color: white;
-    font-family: 'Lato', sans-serif;
+    font-family: roboto !important;
     font-weight: 500;
     font-size: 1.2em;
     z-index: 10;
