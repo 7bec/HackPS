@@ -30,7 +30,11 @@ export default {
      * For nested named routes or routes that for some reason
      * should not be mapped in VOnsNavigator, filter them out here.
      */
-    const mapRouteStack = route => this.pageStack = route.matched.map(m => m.components.default);
+    
+    const mapRouteStack = route =>{
+      console.log(route)
+      this.pageStack = route.matched.map(m => m.components.default);
+    } 
     /* Set initial pageStack depending on current
      * route instead of always pushing 'Home' page
      */
