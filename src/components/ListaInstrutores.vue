@@ -1,12 +1,12 @@
 <template lang='pug'>
-  v-container()
-    v-row(no-gutters style='margin-top: 3vh;')
-        v-icon(style='color: black; font-weight: 800;') mdi-chevron-left
-    v-row(justify='center' no-gutters style='margin-top: 3vh;')
-        v-text-field.search-bar.font(rounded dense flat label="Pesquise por instrutores" prepend-inner-icon="mdi-magnify")
-    v-row(no-gutters style='margin-top: 3vh;')
+  v-container(style='padding-bottom: 0')
+    v-row(justify='center' no-gutters)
+        v-text-field.font(rounded solo hide-details flat background-color='#fff' label="Pesquise por instrutores")
+          template(v-slot:prepend-inner)
+            v-icon(style='margin: 0 10px;') mdi-magnify
+    v-row(no-gutters style='padding: 20px 0 12px 0;')
         span.title-text.font sugestões para você
-    v-row(no-gutters style='margin-top: 3vh;' v-for='instrutor in instrutores' :key='instrutor.name')
+    v-row(no-gutters v-for='instrutor in instrutores' :key='instrutor.uid')
         v-col(cols='4')
             v-img(:src='instrutor.picture_url' style='border-radius: 10px;' height="13vh")
         v-col.font(cols='8' style='padding-left: 30px;')
@@ -36,9 +36,6 @@ export default {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,900;1,700&display=swap');
-.search-bar { 
-    background-color: white !important;
-}
 .font {
     font-family: roboto !important;
 }

@@ -84,4 +84,7 @@ export default {
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#131313', endColorstr='#595959', GradientType=0 );    
     color:black;
 }
+.padding0 {
+    padding: 0;
+}
 </style>

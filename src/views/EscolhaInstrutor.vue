@@ -1,7 +1,11 @@
-<template>
+<template lang='pug'>
     <v-ons-page class="page">
-        <ListaInstrutores :instrutores='instrutores' :style='`height: calc(100vh - ${instrutoresPopularesHeight}px;); overflow: auto;`'></ListaInstrutores>
-        <InstrutoresPopulares class="bot" id="instPop" :instrutoresPopulares='instrutoresPopulares'></InstrutoresPopulares>
+      div.background
+      v-ons-toolbar(modifier='transparent' style='justify-content: center;')
+        div.left
+          v-ons-back-button Voltar
+      ListaInstrutores(:instrutores='instrutores' :style='`height: calc(100vh - ${instrutoresPopularesHeight}px - 44px); overflow: auto;`')
+      InstrutoresPopulares(class="bot" id="instPop" :instrutoresPopulares='instrutoresPopulares')
     </v-ons-page>
 </template>
 
@@ -21,10 +25,13 @@ export default {
             instrutores: [],
         }
     },
-    mounted () {
-        this.instrutoresPopularesHeight = document.getElementById('instPop').clientHeight;
-        console.log(this.instrutoresPopularesHeight)
-        
+    created () {
+      this.instrutoresPopularesHeight = document.getElementById('instPop').clientHeight;
+      console.log(this.instrutoresPopularesHeight) 
+    },
+    updated () {
+      this.instrutoresPopularesHeight = document.getElementById('instPop').clientHeight;
+      console.log(this.instrutoresPopularesHeight) 
     },
     created () {
         console.log('PELO AMOR DE DEUS')
@@ -35,10 +42,11 @@ export default {
                 query: q => q.where(modalidade, '==', true),
                 onSuccess: (todos) => {
                     console.log(todos)
-                    that.instrutores = todos
+                    let aux = todos
+                    let aux2 = todos
+                    that.instrutores = [...aux, ...aux2]
                 }
             })
-
     },
     computed: {
         instrutoresPopulares () {
@@ -54,6 +62,9 @@ export default {
 </script>
 
 <style scoped>
+.background {
+  background-color: #F6F5F3 !important;
+}
 .page {
     height: 100vh;
 }
