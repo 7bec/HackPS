@@ -44,7 +44,7 @@ export default {
 }
 .title-text {
     text-transform: uppercase;
-    color: lightgray;
+    color: black;
     font-weight: 300;
 
 }
@@ -58,7 +58,7 @@ export default {
 }
 .quantidade-alunos {
     font-weight: 300;
-    color: gray;
+    color: black;
 }
  
 </style>

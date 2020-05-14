@@ -34,13 +34,13 @@ export default {
 }
 .title-text {
     text-transform: uppercase;
-    color: lightgray;
+    color: black;
     font-weight: 300;
 
 }
 .name {
     font-weight: 300;
-    color: gray;
+    color: black;
     font-size: 0.8em;
 }
 </style>
