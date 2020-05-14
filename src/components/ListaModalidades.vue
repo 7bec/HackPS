@@ -2,7 +2,7 @@
   v-container(fill-height)
     v-row( align='center' justify='center')
         v-col(cols='12' v-for='modalidade in modalidades' :key='modalidade.name' align-self='center' justify='center')
-            v-row( justify='center' style='margin-bottom: -10px;')
+            v-row( style='margin-bottom: -10px; justify-content: center;')
                 v-card.mx-10.rounded-card(max-width="99vw" elevation='0' @click='goTo(modalidade.name)')
                     v-img(:src="modalidade.background_url")
                         v-row(style='width: 100%;')
