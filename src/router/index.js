@@ -7,6 +7,7 @@ import EscolhaModalidade from '../views/EscolhaModalidade.vue'
 import EscolhaInstrutor from '../views/EscolhaInstrutor.vue'
 import CadastroProfessor from '../views/CadastroProfessor'
 import EscolhaFuncao from '../views/EscolhaFuncao'
+import RedefinirSenha from '../views/RedefinirSenha'
 Vue.use(VueRouter)
 
 const routes = [
@@ -51,6 +52,12 @@ const routes = [
     path: '/escolhaFuncao',
     name: 'EscolhaFuncao',
     component: EscolhaFuncao,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/redefinirSenha',
+    name: 'RedefinirSenha',
+    component: RedefinirSenha,
     meta: { showToolbar: false }
   },
 

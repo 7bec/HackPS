@@ -1,7 +1,7 @@
 <template lang='pug'>
   v-ons-page
     v-ons-toolbar(modifier='transparent' :visible='$route.meta.showToolbar')
-      .center Title
+    .center Title
     .background
     .content
       v-ons-row.backgroundLogin-cell(vertical-align='center')
@@ -14,64 +14,71 @@
               v-ons-col(width='100%')
                 v-row(style='width: 100%' justify='space-around' no-gutters)
                   v-col(cols='12' style='padding: 0 5px 0 10px;')
-                    v-text-field(v-model='login.email' label="E-mail" dark hide-details style='margin-bottom: 15px')
+                    v-text-field(v-model='login.email' label="Informe o email cadastrado" dark hide-details style='margin-bottom: 15px')
                       template(v-slot:prepend-inner)
                         v-icon(style='margin: 0 10px;') mdi-at
                   v-col(cols='12' style='padding: 0 5px 0 10px;')
-                    v-text-field(v-model='login.password' label="Senha" type='password' dark hide-details style='margin-bottom: 30px;')
-                      template(v-slot:prepend-inner)
-                        v-icon(style='margin: 0 10px;') mdi-lock
-                  v-col(cols='12' style='padding: 0 5px 0 10px;')
                     v-ons-row(style='justify-content: center;')
-                      ons-button.font1.custom-button(@click='onsignIn' :disabled='loading.join' style='max-width: 200px; width: 100%; text-align: center;')
-                        | Entrar
-                  v-col(cols='12' style='padding: 0 10px 0 5px;')
-                    ons-button.font1.button-text(@click='forgotPassword' :disabled='loading.join' modifier='quiet' style='width: 100%; text-align: center;')
-                      | Esqueceu a senha?
-      v-ons-row(width='100%' style='position: absolute; bottom: 0; margin-bottom: 20px')
-        v-ons-row(style='justify-content: center;')
-          v-ons-fab(modifier='mini' style='margin-right: 6px;')
-            v-ons-icon(@click='google' icon='fa-google' size='22px')
-          v-ons-fab(modifier='mini' style='margin-left: 6px;')
-            v-ons-icon(@click='facebook' icon='fa-facebook' size='22px')
-        v-ons-row
-          ons-button.font1.button-text(@click='escolhaFuncao' :disabled='loading.join' modifier='quiet' style='width: 100%; text-align: center;')
-            | Não tem uma conta? Entre agora
+                      ons-button.font1.custom-button(@click='forgotPassword' :disabled='loading.join' style='max-width: 200px; width: 100%; text-align: center;')
+                        | Redefinir senha
+ 
+    v-ons-dialog( cancelable='' status-bar-fill='' :visible.sync="dialogVisible" style='display: block; z-index: 10001;' data-device-back-button-handler-id='5')
+        .dialog-mask(style='z-index: 20000; ')
+        .dialog(style='z-index: 20001;border-radius:25px;')
+            .dialog-container
+                .white.v-card.v-sheet.theme--light()
+                    .v-card__text.pt-0.pb-0()
+                        .row.justify-center()
+                        .pt-0.col()
+                            .col.col-12()
+                                .row.justify-center()
+                                    p.font2(style='text-align:center;')  Você receberá um email para redefinir sua senha
+                        .col.col-12( align='center')
+                        img.logoImg( src='img/logo.7e80d9d7.svg' alt='Logo' style='max-width: 70px;')
+                    .v-card__actions()
+                        .col.col-12( style='padding: 0px 5px 0px 10px;')
+                            ons-row( style='justify-content: center;')
+                                ons-button.font1.custom-button.button(@click="goHome" style='max-width: 200px; width: 100%; text-align: center; margin-bottom:10px;') OK
+
 </template>
 
 <script>
+import firebase from 'firebase'
 export default {
-  name: 'login',
+  name: 'RedefinirSenha',
   data () {
     return {
       login: {
         email: '',
-        password: '',
-        loading: false
+        loading: false,
       },
+      dialogVisible: false,
       loading: {
         join: false,
       }
     }
   },
   methods: {
-    onsignUp(){
-      this.$store.dispatch('signUserUp', {email: this.email, password: this.password})
-    },
-    google() {
-      this.$store.dispatch('signUserGoogle')
-    },
-    facebook() {
-      this.$store.dispatch('signUserFacebook')
-    },
-    onsignIn () {
-      this.$store.dispatch('signUserIn',{email:this.login.email,password:this.login.password})
-    },
-    escolhaFuncao(){
-      this.$router.push('/escolhaFuncao')
-    },
     forgotPassword(){
-      this.$router.push('/redefinirSenha')
+      var auth = firebase.auth();
+      var emailAddress = this.login.email;
+      this.dialogVisible=true
+      const that = this
+      auth.sendPasswordResetEmail(emailAddress).then(function() {
+        // Email sent.
+        // that.dialogVisible = true
+      }).catch(function(error) {
+        // An error happened.
+      });
+    },
+    goBack() {
+        console.log(this.$route.matched)
+        this.$router.push({ name: this.$route.matched[this.$route.matched.length - 2].name });
+    },
+    goHome(){
+        this.dialogVisible=false
+        console.log(this.$router)
+        this.$router.push('/login')
     }
   }
 }
@@ -122,6 +129,11 @@ export default {
     font-weight: 500 !important;
     font-family: roboto !important;
     font-size: 0.875rem !important;
+  }
+.font2 {
+    font-weight: 500 !important;
+    font-family: roboto !important;
+    font-size: 1.050rem !important;
   }
   .custom-button {
     border-radius: 25px;
