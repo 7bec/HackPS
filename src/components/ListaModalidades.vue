@@ -3,12 +3,15 @@
     v-row( align='center' justify='center')
         v-col(cols='12' v-for='modalidade in modalidades' :key='modalidade.name' align-self='center' justify='center')
             v-row( style='margin-bottom: -10px; justify-content: center;')
-                v-card.mx-10.rounded-card(max-width="99vw" elevation='0' @click='goTo(modalidade.name)')
-                    v-img(:src="modalidade.background_url")
-                        v-row(style='width: 100%;')
-                            div.overlay
-                            v-row(style='margin-top: 15px; margin-left: 20px;')
-                                span.titulo-card {{modalidade.name}}
+                v-card.mx-10.rounded-card(ripple width="90vw" elevation='0' @click='goTo(modalidade.name)')
+                    <div class="v-responsive v-image pls">
+                        <div class="v-responsive__sizer" style="padding-bottom: 66.6667%;"></div>
+                        <div class="v-image__image v-image__image--cover" :style='`background-image: url(${modalidade.background_url}); background-position: center center; width:100%;`'></div>
+                        <div class="v-responsive__content" style="width: 100%; flex: 0 0 auto; position: relative">
+                            <div class="overlay"></div>
+                            <div class="titulo-card">{{modalidade.name}}</div>
+                        </div>
+                    </div>
 </template>
 
 <script>
@@ -47,7 +50,6 @@ export default {
         }
     },
     mounted () {
-        console.log('OIIIII')
     }
 }
 </script>
@@ -60,11 +62,19 @@ export default {
 
 
 .titulo-card {
-    color: white;
-    font-family: roboto !important;
-    font-weight: 500;
-    font-size: 1.2em;
+    color: #fff;
+    font-family: Montserrat !important;
+    font-weight: 800;
+    font-size: 1.8em;
     z-index: 10;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+    padding-bottom: 16px;
+    text-transform: uppercase;
+    
 }
 
 .overlay {
@@ -74,17 +84,14 @@ export default {
     right:0;
     bottom:0;
     z-index:9;
-    background: rgba(19,19,19,1);
-    background: -moz-linear-gradient(top, rgba(19,19,19,1) 0%, rgba(28,28,28,0.64) 9%, rgba(76,76,76,0.2) 20%, rgba(43,43,43,0.2) 24%, rgba(17,17,17,0.2) 40%, rgba(0,0,0,0.2) 49%, rgba(44,44,44,0.2) 50%, rgba(71,71,71,0.2) 61%, rgba(102,102,102,0.2) 75%, rgba(89,89,89,0.2) 88%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(19,19,19,1)), color-stop(9%, rgba(28,28,28,0.64)), color-stop(20%, rgba(76,76,76,0.2)), color-stop(24%, rgba(43,43,43,0.2)), color-stop(40%, rgba(17,17,17,0.2)), color-stop(49%, rgba(0,0,0,0.2)), color-stop(50%, rgba(44,44,44,0.2)), color-stop(61%, rgba(71,71,71,0.2)), color-stop(75%, rgba(102,102,102,0.2)), color-stop(88%, rgba(89,89,89,0.2)));
-    background: -webkit-linear-gradient(top, rgba(19,19,19,1) 0%, rgba(28,28,28,0.64) 9%, rgba(76,76,76,0.2) 20%, rgba(43,43,43,0.2) 24%, rgba(17,17,17,0.2) 40%, rgba(0,0,0,0.2) 49%, rgba(44,44,44,0.2) 50%, rgba(71,71,71,0.2) 61%, rgba(102,102,102,0.2) 75%, rgba(89,89,89,0.2) 88%);
-    background: -o-linear-gradient(top, rgba(19,19,19,1) 0%, rgba(28,28,28,0.64) 9%, rgba(76,76,76,0.2) 20%, rgba(43,43,43,0.2) 24%, rgba(17,17,17,0.2) 40%, rgba(0,0,0,0.2) 49%, rgba(44,44,44,0.2) 50%, rgba(71,71,71,0.2) 61%, rgba(102,102,102,0.2) 75%, rgba(89,89,89,0.2) 88%);
-    background: -ms-linear-gradient(top, rgba(19,19,19,1) 0%, rgba(28,28,28,0.64) 9%, rgba(76,76,76,0.2) 20%, rgba(43,43,43,0.2) 24%, rgba(17,17,17,0.2) 40%, rgba(0,0,0,0.2) 49%, rgba(44,44,44,0.2) 50%, rgba(71,71,71,0.2) 61%, rgba(102,102,102,0.2) 75%, rgba(89,89,89,0.2) 88%);
-    background: linear-gradient(to bottom, rgba(19,19,19,1) 0%, rgba(28,28,28,0.64) 9%, rgba(76,76,76,0.2) 20%, rgba(43,43,43,0.2) 24%, rgba(17,17,17,0.2) 40%, rgba(0,0,0,0.2) 49%, rgba(44,44,44,0.2) 50%, rgba(71,71,71,0.2) 61%, rgba(102,102,102,0.2) 75%, rgba(89,89,89,0.2) 88%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#131313', endColorstr='#595959', GradientType=0 );    
-    color:black;
+    background: rgb(0,0,0);
+    background: linear-gradient(180deg, rgba(0,0,0,0) 52%, rgba(0,0,0,0.7791491596638656) 71%);
 }
 .padding0 {
     padding: 0;
+}
+
+.pls{
+    flex: 0 0 auto !important;
 }
 </style>

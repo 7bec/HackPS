@@ -1,11 +1,13 @@
 <template lang='pug'>
     <v-ons-page class="page">
-      div.background
-      v-ons-toolbar(modifier='transparent' style='justify-content: center;')
-        div.left
-          v-ons-back-button Voltar
-      ListaInstrutores(:instrutores='instrutores' :style='`height: calc(100vh - ${instrutoresPopularesHeight}px - 44px); overflow: auto;`')
-      InstrutoresPopulares(class="bot" id="instPop" :instrutoresPopulares='instrutoresPopulares')
+        div.background
+        v-ons-toolbar(modifier='transparent')
+            div.left
+                v-row(no-gutters)
+                    v-icon(x-large) mdi-chevron-left
+                    span.voltar
+        ListaInstrutores(:instrutores='instrutores' :style='`height: calc(100vh - ${instrutoresPopularesHeight}px - 44px); overflow: auto;`')
+        InstrutoresPopulares(class="bot" id="instPop" :instrutoresPopulares='instrutoresPopulares')
     </v-ons-page>
 </template>
 
@@ -42,9 +44,7 @@ export default {
                 query: q => q.where(modalidade, '==', true),
                 onSuccess: (todos) => {
                     console.log(todos)
-                    let aux = todos
-                    let aux2 = todos
-                    that.instrutores = [...aux, ...aux2]
+                    that.instrutores = todos
                 }
             })
     },
@@ -63,7 +63,7 @@ export default {
 
 <style scoped>
 .background {
-  background-color: #F6F5F3 !important;
+  background-color: white !important;
 }
 .page {
     height: 100vh;
@@ -72,5 +72,14 @@ export default {
     position: absolute;
     bottom: 0;
     z-index: 9;
+}
+.title {
+	font-size: 1.4;
+	text-transform: uppercase;
+	font-weight: 600;
+}
+.voltar {
+    font-family: roboto;
+    
 }
 </style>

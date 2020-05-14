@@ -19,9 +19,8 @@
                         v-icon(style='margin: 0 10px;') mdi-at
                   v-col(cols='12' style='padding: 0 5px 0 10px;')
                     v-ons-row(style='justify-content: center;')
-                      ons-button.font1.custom-button(@click='forgotPassword' :disabled='loading.join' style='max-width: 200px; width: 100%; text-align: center;')
+                      ons-button.font1.custom-button(@click='forgotPassword' :disabled='loading.join' style='max-width: 200px; width: 100%; text-align: center; margin-top: 8px;')
                         | Redefinir senha
- 
     v-ons-dialog( cancelable='' status-bar-fill='' :visible.sync="dialogVisible" style='display: block; z-index: 10001;' data-device-back-button-handler-id='5')
         .dialog-mask(style='z-index: 20000; ')
         .dialog(style='z-index: 20001;border-radius:25px;')
@@ -34,7 +33,7 @@
                                 .row.justify-center()
                                     p.font2(style='text-align:center;')  Você receberá um email para redefinir sua senha
                         .col.col-12( align='center')
-                        img.logoImg( src='img/logo.7e80d9d7.svg' alt='Logo' style='max-width: 70px;')
+                        img.logoImg( src='../images/logo.svg' alt='Logo' style='max-width: 70px;')
                     .v-card__actions()
                         .col.col-12( style='padding: 0px 5px 0px 10px;')
                             ons-row( style='justify-content: center;')
