@@ -69,7 +69,7 @@ export default {
       this.$store.dispatch('signUserIn',{email:this.login.email,password:this.login.password})
     },
     escolhaFuncao(){
-      this.$router.push('/escolhaFuncao')
+      this.$router.push('/home')
     },
     forgotPassword(){
       this.$router.push('/redefinirSenha')
