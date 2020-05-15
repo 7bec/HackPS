@@ -17,9 +17,15 @@
 export default {
   name: 'Home',
   methods: {
-    pushCadastro () {
+    pushLogin () {
       this.$router.push('/login')
-    }
+    },
+    pushAluno () {
+      this.$router.push('/cadastroAluno')
+    },
+    pushProfessor () {
+      this.$router.push('/cadastroProfessor')
+    },
   }
 }
 </script>
