@@ -8,6 +8,7 @@ import EscolhaInstrutor from '../views/EscolhaInstrutor.vue'
 import CadastroProfessor from '../views/CadastroProfessor'
 import EscolhaFuncao from '../views/EscolhaFuncao'
 import RedefinirSenha from '../views/RedefinirSenha'
+import Planos from '../views/Planos'
 Vue.use(VueRouter)
 
 const routes = [
@@ -58,6 +59,12 @@ const routes = [
     path: '/redefinirSenha',
     name: 'RedefinirSenha',
     component: RedefinirSenha,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/planos',
+    name: 'Planos',
+    component: Planos,
     meta: { showToolbar: false }
   },
 
