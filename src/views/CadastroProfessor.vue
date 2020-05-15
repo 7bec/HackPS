@@ -32,7 +32,7 @@
                       input.text-input.text-input--material(type='text'  v-model='user.gender' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-button.font1.custom-button(@click='$router.push("/cadastroprofessor1")' style='max-width: 150px; width: 100%; text-align: center; margin-bottom: 25px;')
+                    ons-button.font1.custom-button(@click='$router.push("/cadastroprofessor2")' style='max-width: 150px; width: 100%; text-align: center; margin-bottom: 25px;')
                       | Próximo
 </template>
 <script>

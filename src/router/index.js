@@ -9,6 +9,9 @@ import CadastroProfessor from '../views/CadastroProfessor'
 import CadastroProfessor1 from '../views/CadastroProfessor1'
 import CadastroProfessor2 from '../views/CadastroProfessor2'
 import CadastroProfessor3 from '../views/CadastroProfessor3'
+import CadastroAluno1 from '../views/CadastroAluno1'
+import CadastroAluno2 from '../views/CadastroAluno2'
+import CadastroAluno3 from '../views/CadastroAluno3'
 import EscolhaFuncao from '../views/EscolhaFuncao'
 import RedefinirSenha from '../views/RedefinirSenha'
 Vue.use(VueRouter)
@@ -30,6 +33,24 @@ const routes = [
     path: '/cadastroaluno',
     name: 'CadastroAluno',
     component: CadastroAluno,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/cadastroaluno1',
+    name: 'CadastroAluno1',
+    component: CadastroAluno1,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/cadastroaluno2',
+    name: 'CadastroAluno2',
+    component: CadastroAluno2,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/cadastroaluno3',
+    name: 'CadastroAluno3',
+    component: CadastroAluno3,
     meta: { showToolbar: false }
   },
   {

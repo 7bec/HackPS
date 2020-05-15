@@ -10,7 +10,7 @@
             div.step_progressbar
               ul
                 li.active Sobre você
-                li Contato
+                li.active Contato
                 li Conta
           div.table-item.fill(style='position: relative')
             v-ons-row.background-section(style='height: 100%;')
@@ -20,19 +20,15 @@
                     div.font2(style='margin-bottom: 10px;') Cadastro no APP
                     div.font3(style='margin-bottom: 20px;') Preencha seus dados para continuar
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Nome' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.name' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Língua' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.language' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Data de Nascimento' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.born' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Telefone' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.phone' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Gênero' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.gender' style='height: 40px; font-size: 20px;')
-                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
-                  v-col(cols='12')
-                    ons-button.font1.custom-button(@click='$router.push("/cadastroAluno2")' style='max-width: 150px; width: 100%; text-align: center; margin-bottom: 25px;')
+                    ons-button.font1.custom-button(@click='$router.push("/cadastroAluno3")' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
                       | Próximo
 </template>
 <script>
