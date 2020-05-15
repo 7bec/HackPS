@@ -20,19 +20,23 @@
                     div.font2(style='margin-bottom: 10px;') Cadastro no APP
                     div.font3(style='margin-bottom: 20px;') Preencha seus dados para continuar
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Nome' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.name' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='País' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.country' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Data de Nascimento' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.born' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Estado' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.state' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Gênero' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.gender' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Cidade' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.city' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-button.font1.custom-button(@click='$router.push("/cadastroprofessor1")' style='max-width: 150px; width: 100%; text-align: center; margin-bottom: 25px;')
+                    ons-input.custom-input(placeholder='Academia' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.gym' style='height: 40px; font-size: 20px;')
+                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
+                  v-col(cols='12')
+                    ons-button.font1.custom-button(@click='$router.push("/cadastroprofessor2")' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
                       | Próximo
 </template>
 <script>

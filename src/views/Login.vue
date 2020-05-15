@@ -1,4 +1,4 @@
-<template lang='pug'>
+<template lang="pug">
   v-ons-page
     v-ons-toolbar(modifier='transparent' :visible='$route.meta.showToolbar')
       .center Title
@@ -65,6 +65,7 @@ export default {
       this.$store.dispatch('signUserFacebook')
     },
     onsignIn () {
+      this.$router.push('/cadastroprofessor')
       this.$store.dispatch('signUserIn',{email:this.login.email,password:this.login.password})
     },
     escolhaFuncao(){
