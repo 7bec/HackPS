@@ -6,6 +6,9 @@ import CadastroAluno from '../views/CadastroAluno'
 import EscolhaModalidade from '../views/EscolhaModalidade.vue'
 import EscolhaInstrutor from '../views/EscolhaInstrutor.vue'
 import CadastroProfessor from '../views/CadastroProfessor'
+import CadastroProfessor1 from '../views/CadastroProfessor1'
+import CadastroProfessor2 from '../views/CadastroProfessor2'
+import CadastroProfessor3 from '../views/CadastroProfessor3'
 import EscolhaFuncao from '../views/EscolhaFuncao'
 import RedefinirSenha from '../views/RedefinirSenha'
 Vue.use(VueRouter)
@@ -30,6 +33,30 @@ const routes = [
     meta: { showToolbar: false }
   },
   {
+    path: '/cadastroProfessor',
+    name: 'CadastroProfessor',
+    component: CadastroProfessor,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/cadastroProfessor1',
+    name: 'CadastroProfessor1',
+    component: CadastroProfessor1,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/cadastroProfessor2',
+    name: 'CadastroProfessor2',
+    component: CadastroProfessor2,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/cadastroProfessor3',
+    name: 'CadastroProfessor3',
+    component: CadastroProfessor3,
+    meta: { showToolbar: false }
+  },
+  {
     path: '/escolhamodalidade',
     name: 'EscolhaModalidade',
     component: EscolhaModalidade,
@@ -39,12 +66,6 @@ const routes = [
     path: '/escolhainstrutor/:modalidade',
     name: 'EscolhaInstrutor',
     component: EscolhaInstrutor,
-    meta: { showToolbar: false }
-  },
-  {
-    path: '/cadastroProfessor',
-    name: 'CadastroProfessor',
-    component: CadastroProfessor,
     meta: { showToolbar: false }
   },
   
