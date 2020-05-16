@@ -1,32 +1,89 @@
 <template lang='pug'>
   v-ons-page
-    v-col(cols='12' style='padding: 0 5px 0 10px;')
-        v-ons-row(style='justify-content: center; ')
-        ons-button.font1.button-text(@click='cadastroAluno' :disabled='loading.join' modifier='quiet' style='width: 100%; text-align: center;')
-            | ALUNO?
-        v-col(cols='12' style='padding: 0 10px 0 5px;')
-        ons-button.font1.button-text(@click='cadastroProfessor' :disabled='loading.join' modifier='quiet' style='width: 100%; text-align: center;')
-            | PROFESSOR?
-  
-
+    div.background
+      <div class="center" style="margin-top:50%;">
+        <v-ons-row style='justify-content: center;'>
+          //- p.font2  Bem vindo ao PEP FIT
+          img.logoImg(style='max-width: 600px;' src='../../imagens/logo-ipsum copy.svg' alt='Logo')
+        </v-ons-row>
+        //- <v-ons-row style='justify-content: center;'>
+        //-   p.font2  texto texto
+        //- </v-ons-row>
+      </div>
+    v-ons-row(width='100%' vertical-align='bottom' style='height: 85%; justify-content: center; text-align: center')
+      ons-button.font1.custom-button(@click='pushAluno' style='margin-bottom: 10px; min-width: 270px; ') Quero ser aluno
+    v-ons-row(width='100%' vertical-align='bottom' style=' justify-content: center; text-align: center')
+      ons-button.font3.custom-button1(@click='pushProfessor' style='margin-bottom: 10px; min-width: 270px;') Quero ser professor
+    v-ons-row
+      ons-button.font1.button-text(@click='pushLogin'  modifier='quiet' style='width: 100%; text-align: center;')
+        | Já sou cadastrado
+      
 </template>
+
 <script>
 export default {
-  name: 'login',
-  data () {
-    return {
-      loading: {
-        join: false,
-      }
-    }
-  },
+  name: 'Home',
   methods: {
-    cadastroAluno(){
+    pushLogin () {
+      this.$router.push('/login')
+    },
+    pushAluno () {
       this.$router.push('/cadastroAluno')
     },
-    cadastroProfessor(){
+    pushProfessor () {
       this.$router.push('/cadastroProfessor')
-    }
+    },
+
   }
 }
 </script>
+
+<style scoped>
+.background {
+  background-image: url('../../imagens/shutterstock_638555473.png');
+  -o-background-size: 50vmax auto;
+  -webkit-background-size: 50vmax auto;
+  -moz-background-size: 50vmax auto;
+  background-size: 50vmax auto;
+  background-color: #F6F5F3;
+  background-origin: content-box;
+  background-position: center;
+}
+  .background {
+    background-image: url('../../imagens/background-login-muie(3).png');
+    background-origin: content-box;
+    background-position: center;
+    background-size: cover;
+  }
+.font1 {
+  font-weight: 500 !important;
+  font-family: roboto !important;
+  font-size: 0.875rem !important;
+}
+.font3 {
+  font-weight: 500 !important;
+  font-family: roboto !important;
+  font-size: 0.875rem !important;
+  color: rgba(240,84,41,1);
+}
+.font2 {
+  font-weight: 600 !important;
+  font-family: roboto !important;
+  font-size: 1.75rem !important;
+  color:white;
+}
+.custom-button {
+  border-radius: 25px;
+  text-transform: uppercase;
+  background: rgb(239,41,41) !important;
+  background: linear-gradient(90deg, rgba(239,41,41,1) 0%, rgba(240,84,41,1) 45%) !important;
+}
+.custom-button1 {
+  border-radius: 25px;
+  text-transform: uppercase;
+  background: white !important;
+}
+.button-text {
+    color: grey !important;
+}
+</style>
