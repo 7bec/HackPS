@@ -20,7 +20,6 @@ export default {
   name: 'Home',
   methods: {
     pushLogin () {
-      alert('oi')
       this.$router.push('/login')
     },
     pushAluno () {
@@ -53,7 +52,8 @@ export default {
   font-weight: 500 !important;
   font-family: roboto !important;
   font-size: 0.875rem !important;
-  color: rgba(240,84,41,1);
+  /* color: rgba(240,84,41,1); */
+  color:black;
 }
 .font2 {
   font-weight: 600 !important;
