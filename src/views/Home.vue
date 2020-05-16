@@ -1,16 +1,18 @@
 <template lang='pug'>
   v-ons-page
-    div.background
+    <div class="center">
       <v-ons-row style='justify-content: center;'>
-          img.logoImg(style=' margin-top:50%;max-width: 600px;' src='../../imagens/logo-ipsum copy.svg' alt='Logo')
+        <img style='width: 35%; max-height: 100px;' src="../../imagens/logo-ipsum.svg">
       </v-ons-row>
-      v-ons-row(width='100%' vertical-align='bottom' style='height: 30%; justify-content: center; text-align: center')
-        ons-button.font1.custom-button(@click='pushAluno' style='margin-bottom: 10px; min-width: 270px; ') Quero ser aluno
-      v-ons-row(width='100%' vertical-align='bottom' style=' justify-content: center; text-align: center')
-        ons-button.font3.custom-button1(@click='pushProfessor' style='margin-bottom: 10px; min-width: 270px;') Quero ser professor
-      v-ons-row
-        ons-button.font1.button-text(@click='pushLogin'  modifier='quiet' style='width: 100%; text-align: center;')
-          | Já sou cadastrado
+    </div>
+    div.background
+    v-ons-row(width='100%' vertical-align='bottom' style='height: 75%; justify-content: center; text-align: center')
+      ons-button.font1.custom-button(@click='pushAluno' style='margin-bottom: 10px; min-width: 270px; ') Quero ser aluno
+    v-ons-row(width='100%' vertical-align='bottom' style=' justify-content: center; text-align: center')
+      ons-button.font3.custom-button1(@click='pushProfessor' style='margin-bottom: 10px; min-width: 270px;') Quero ser professor
+    v-ons-row
+      ons-button.font1.button-text(@click='pushLogin'  modifier='quiet' style='width: 100%; text-align: center;')
+        | Já sou cadastrado
 </template>
 
 <script>
@@ -18,6 +20,7 @@ export default {
   name: 'Home',
   methods: {
     pushLogin () {
+      alert('oi')
       this.$router.push('/login')
     },
     pushAluno () {
@@ -41,12 +44,6 @@ export default {
   background-origin: content-box;
   background-position: center;
 }
-  .background {
-    background-image: url('../../imagens/background-login-muie(3).png');
-    background-origin: content-box;
-    background-position: center;
-    background-size: cover;
-  }
 .font1 {
   font-weight: 500 !important;
   font-family: roboto !important;

@@ -21,7 +21,7 @@ const routes = [
     path: '/home',
     name: 'Home',
     component: Home,
-    meta: { showToolbar: true }
+    // meta: { showToolbar: true }
   },
   {
     path: '/',
@@ -93,7 +93,7 @@ const routes = [
   {
     path: '/escolhaFuncao',
     name: 'EscolhaFuncao',
-    component: EscolhaFuncao,
+    component: Home,
     meta: { showToolbar: false }
   },
   {
