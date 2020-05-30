@@ -19,13 +19,13 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
+    path: '/',
     name: 'Home',
     component: Home,
     // meta: { showToolbar: true }
   },
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: Login,
     meta: { showToolbar: false }
