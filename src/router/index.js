@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Begin from '../views/Begin.vue'
 import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import CadastroAluno from '../views/CadastroAluno'
@@ -18,9 +19,9 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/home',
-    name: 'Home',
-    component: Home,
+    path: '/begin',
+    name: 'Begin',
+    component: Begin,
     // meta: { showToolbar: true }
   },
   {
@@ -28,6 +29,12 @@ const routes = [
     name: 'Login',
     component: Login,
     meta: { showToolbar: false }
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home,
+    meta: { showToolbar: true }
   },
   {
     path: '/cadastroaluno',
@@ -93,7 +100,7 @@ const routes = [
   {
     path: '/escolhaFuncao',
     name: 'EscolhaFuncao',
-    component: Home,
+    component: Begin,
     meta: { showToolbar: false }
   },
   {
