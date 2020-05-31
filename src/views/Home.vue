@@ -14,12 +14,12 @@
               svg(style="width:12px;height:12px" viewBox="0 0 24 24")
                 path(fill="aaa" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z")
       v-ons-row(width='100%' style='padding: 32px 0 8px 0;')
-        v-row.font3(no-gutters style='padding: 0;')
+        v-row.font3(no-gutters style='padding: 0; width: 100%;')
           v-col Serviços
           v-col(cols='auto' style='font-weight: 500; font-size: 14px;') Ver mais
         v-row.font4(no-gutters style='padding: 4px 0 0 0;') Escolha um dos mais diversos serviços
       v-ons-row(width='100%' style='padding: 0 0 16px 0')
-        v-row(style='padding: 0;')
+        v-row(style='padding: 0; width: 100%;')
           v-col(cols='4' style='padding: 4px')
             v-card.cardServices(dark style='border-radius: 10px;')
               v-ons-ripple
@@ -73,25 +73,43 @@
           v-col(cols='auto' style='font-weight: 500; font-size: 14px;') Ver mais
         v-row.font4(no-gutters style='padding: 4px 0 0 0;') Veja seus treinos
       v-ons-row(width='100%')
-        v-row(no-gutters style='width: 100%;')
-          v-slide-group(show-arrows style='max-width: 960px;')
+        v-row(no-gutters style='max-width: calc(100% + 10px); position: relative;')
+          v-slide-group.sliderGroupSetts(v-model='model' style='max-width: 100%;')
             v-slide-item(v-for='(instrutor, i) in instrutores' :key='i')
-              v-card.ml-5.mr-1.mb-5.borderProject(v-if='i == 0' height='160' width='150')
-                v-img(height='90' :src='instrutor.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
-                v-container(ma-0 pb-0 style='padding-top: 5px;')
+              v-card.borderInstrutor.boxDone(v-if='i == 0' outlined height='250' width='200' :class='{ "doneBadge": instrutor.done }' style='margin: 4px 4px 20px 1px; overflow: hidden;')
+                v-img(height='250' :src='instrutor.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
+                v-container(style='padding-top: 5px; position: absolute; bottom: 0; width: 100%; height: 70px; background: rgba(48, 27, 20, 0.5);')
                   v-layout(column)
                     v-flex(xs12)
-                      h5(style='font-weight: 400; font-size: 14.5px') {{instrutor.name}}
-                    v-flex(xs12)
-                      h5(style='font-weight: 400; font-size: 10px; color: #C0C0C0') {{instrutor.modalidade}}
-              v-card.mx-1.mb-5.borderinstrutor(v-else height='160' width='150')
-                v-img(height='90' :src='instrutor.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
-                v-container(ma-0 pb-0 style='padding-top: 5px;')
+                      h5(style='display: inline; margin-bottom: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: white;') {{instrutor.name}}  
+                      span(style='position: relative; top: 2px;')
+                        svg(style="width:14px;height:14px;" viewBox="0 0 24 24")
+                          path(fill="#fff" d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z")
+                  v-row(no-gutters style='padding: 0;')
+                    v-col()
+                      h5(style='margin: 5px 0 0 0; font-weight: 700; font-size: 12px; letter-spacing: -0.83px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino 3/7:
+                    v-col(cols='auto')
+                      h5(style='margin: 5px 0 0 0; font-weight: 400; font-size: 12px; letter-spacing: -0.83px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino Parte Superior
+                  v-row(no-gutters style='padding: 0;')
+                    v-col(style='padding: 3px 0 0 0;')
+                      .modalidadeBadge {{ instrutor.modalidade }}
+              v-card.borderInstrutor.boxDone(v-else outlined height='250' width='200' :class='{ "doneBadge": instrutor.done }' style='margin: 4px 4px 20px 4px; overflow: hidden;')
+                v-img(height='250' :src='instrutor.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
+                v-container(style='padding-top: 5px; position: absolute; bottom: 0; width: 100%; height: 70px; background: rgba(48, 27, 20, 0.5);')
                   v-layout(column)
                     v-flex(xs12)
-                      h5(style='font-weight: 400; font-size: 14.5px') {{instrutor.name}}
-                    v-flex(xs12)
-                      h5(style='font-weight: 400; font-size: 10px; color: #C0C0C0') {{instrutor.modalidade}}
+                      h5(style='display: inline; margin-bottom: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: white;') {{instrutor.name}}  
+                      span(style='position: relative; top: 2px;')
+                        svg(style="width:14px;height:14px;" viewBox="0 0 24 24")
+                          path(fill="#fff" d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z")
+                  v-row(no-gutters style='padding: 0;')
+                    v-col()
+                      h5(style='margin: 5px 0 0 0; font-weight: 700; font-size: 12px; letter-spacing: -0.83px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino 3/7:
+                    v-col(cols='auto')
+                      h5(style='margin: 5px 0 0 0; font-weight: 400; font-size: 12px; letter-spacing: -0.83px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino Parte Superior
+                  v-row(no-gutters style='padding: 0;')
+                    v-col(style='padding: 3px 0 0 0;')
+                      .modalidadeBadge {{ instrutor.modalidade}}
 </template>
 
 <script>
@@ -101,6 +119,7 @@ export default {
   name: 'Home',
   data () {
     return {
+      model: [],
       cardHeight: 500,
       showDiv: false,
       instrutores: []
@@ -175,9 +194,70 @@ export default {
   box-shadow: rgba(31, 70, 88, 0.3) 0px 3px 10px 0px;
   height: 110px;
 }
-.borderProject{
+.borderInstrutor{
+  border-radius: 10px !important;
   -webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
   -moz-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
   box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
+}
+.boxDone {
+  position: relative;
+  display: inline-block;
+}
+.doneBadge:before {
+  content: "";
+  z-index: -1;
+  overflow: hidden;
+  transform: rotate(-135deg);
+  width: 120px;
+  display: block; 
+  background: #79A70A;
+  background: linear-gradient(#9BC90D 0%, #79A70A 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 34px;
+  right: -16px;
+  clip-path: polygon(120px 20px, 90px -10px, 30px -10px, 0px 20px, 10px 30px,  110px 30px);
+  height: 20px;
+  width: 120px;
+}
+.doneBadge:after {
+  content: "feito!";
+  z-index: 1;
+  overflow: hidden;
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 20px;
+  transform: rotate(45deg);
+  width: 120px;
+  display: block; 
+  background: #79A70A;
+  background: linear-gradient(#9BC90D 0%, #79A70A 100%);
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 20px;
+  right: -30px;
+  clip-path: polygon(120px 20px, 90px -10px, 30px -10px, 0px 20px, 10px 30px,  110px 30px)
+}
+.modalidadeBadge {
+  border-radius: 10px;
+  color: rgb(43, 43, 43);
+  font-size: 10px;
+  height: 18px;
+  letter-spacing: 0;
+  min-width: 20px;
+  padding: 2px 6px;
+  pointer-events: auto;
+  position: absolute;
+  text-align: center;
+  text-indent: 0;
+  top: auto;
+  transition: .3s cubic-bezier(.25,.8,.5,1);
+  white-space: nowrap;
+  background-color: #ffffff!important;
+  border-color: #ffffff!important;
 }
 </style>
