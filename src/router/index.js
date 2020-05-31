@@ -15,6 +15,7 @@ import CadastroAluno2 from '../views/CadastroAluno2'
 import CadastroAluno3 from '../views/CadastroAluno3'
 import EscolhaFuncao from '../views/EscolhaFuncao'
 import RedefinirSenha from '../views/RedefinirSenha'
+import Planos from '../views/Planos'
 Vue.use(VueRouter)
 
 const routes = [
@@ -22,10 +23,10 @@ const routes = [
     path: '/begin',
     name: 'Begin',
     component: Begin,
-    // meta: { showToolbar: true }
+    meta: { showToolbar: false }
   },
   {
-    path: '/',
+    path: '/login',
     name: 'Login',
     component: Login,
     meta: { showToolbar: false }
@@ -107,6 +108,12 @@ const routes = [
     path: '/redefinirSenha',
     name: 'RedefinirSenha',
     component: RedefinirSenha,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/planos',
+    name: 'Planos',
+    component: Planos,
     meta: { showToolbar: false }
   },
 

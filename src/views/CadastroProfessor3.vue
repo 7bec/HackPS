@@ -17,8 +17,8 @@
               v-ons-col(width='100%')
                 v-row(style='width: 100%' justify='space-around' no-gutters)
                   v-col(cols='12')
-                    div.font2(style='margin-bottom: 10px;') Cadastro no APP
-                    div.font3(style='margin-bottom: 20px;') Preencha seus dados para continuar
+                    div.font2(style='margin-bottom: 10px;') Informações pessoais
+                    div.font3(style='margin-bottom: 20px;') Preencha os campos abaixo para nos conhecermos melhor
                   v-col(cols='12')
                     ons-input.custom-input(placeholder='Email' modifier='material' float)
                       input.text-input.text-input--material(type='text'  v-model='user.email' style='height: 40px; font-size: 20px;')
