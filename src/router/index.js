@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import CadastroAluno from '../views/CadastroAluno'
 import EscolhaModalidade from '../views/EscolhaModalidade.vue'
 import EscolhaInstrutor from '../views/EscolhaInstrutor.vue'
+import Instrutor from '../views/Instrutor.vue'
 import CadastroProfessor from '../views/CadastroProfessor'
 import CadastroProfessor1 from '../views/CadastroProfessor1'
 import CadastroProfessor2 from '../views/CadastroProfessor2'
@@ -88,6 +89,12 @@ const routes = [
     path: '/escolhainstrutor/:modalidade',
     name: 'EscolhaInstrutor',
     component: EscolhaInstrutor,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/instrutor/:idInstrutor',
+    name: 'Instrutor',
+    component: Instrutor,
     meta: { showToolbar: false }
   },
   

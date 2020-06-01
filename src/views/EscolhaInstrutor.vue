@@ -27,10 +27,6 @@ export default {
             instrutores: [],
         }
     },
-    created () {
-      this.instrutoresPopularesHeight = document.getElementById('instPop').clientHeight;
-      console.log(this.instrutoresPopularesHeight) 
-    },
     updated () {
       this.instrutoresPopularesHeight = document.getElementById('instPop').clientHeight;
       console.log(this.instrutoresPopularesHeight) 

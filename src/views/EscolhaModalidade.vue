@@ -4,7 +4,7 @@
 		v-ons-toolbar(modifier='transparent')
 			div.left
 				v-icon(x-large) mdi-chevron-left
-			div.center.font.title(style='text-align: center;') Treine em casa
+			div.center.font.title(style='text-align: center;') Modalidades
 		div.font.subtitle(style='text-align: center; margin-top: 30px;') Escolha sua modalidade de treino
 		ListaModalidades
 	</v-ons-page>

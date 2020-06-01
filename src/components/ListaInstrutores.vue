@@ -6,16 +6,28 @@
             v-icon(style='margin: 0 10px;') mdi-magnify
     v-row(no-gutters style='padding: 20px 0 12px 0;')
         span.title-text.font sugestões para você
-    v-row(no-gutters v-for='instrutor in instrutores' :key='instrutor.uid' style='margin-top: 12px;')
+    v-row(no-gutters v-for='instrutor in instrutores' :key='instrutor.uid' style='margin-top: 12px;' @click="selecionaInstrutor(instrutor)")
         v-col(cols='4')
-            v-img(:src='instrutor.picture_url' style='border-radius: 10px;' height="13vh")
+            v-img(:src='instrutor.picture_url' style='border-radius: 10px;' height="25vh")
         v-col.font(cols='8' style='padding-left: 30px;')
             v-row()
                 span.instrutor-name() {{instrutor.name}}
             v-row()
-                span.quantidade-alunos {{instrutor.qtd_alunos}} alunos
+                v-col(style='padding: 0;')
+                    span Doutor
+                //- v-col(style='padding: 0;')
+                //-     span CREF: 4044-PE
+            v-row
+                span Recife - PE
+            v-row
+                span.especializacao Especializado em emagrecimento e hipertensão
             v-row()
-                <star-rating v-model='instrutor.rating' :star-size="15" :increment='0.01' :show-rating='false' :read-only='true' :glow="0.1"  glow-color='#0xFF' :border-width="0"></star-rating>
+                v-chip-group()
+                    v-chip( dark :style="`background-color: ${strengthColor(forca)};`" v-for="forca in forcas" :key="forca") {{forca}}
+            v-row()
+                span.quantidade-alunos {{instrutor.qtd_alunos}} alunos
+            //- v-row()
+            //-     <star-rating v-model='instrutor.rating' :star-size="15" :increment='0.01' :show-rating='false' :read-only='true' :glow="0.1"  glow-color='#0xFF' :border-width="0"></star-rating>
 </template>
 
 <script>
@@ -28,6 +40,32 @@ export default {
     data () {
         return {
 
+            forcas: [
+                'Segurança na prescrição',
+                'Afetividade do treino',
+                'Feedback',
+                'Tempo de entrega'
+            ]
+        }
+    },
+    methods: {
+        strengthColor (forca) {
+            if (forca == 'Segurança na prescrição'){
+                return 'green'
+            }else if ( forca == 'Afetividade do treino') {
+                return '#800080'
+            }else if ( forca == 'Feedback') {
+                return '#3d8def'
+            } else if ( forca == 'Tempo de entrega') {
+                return '#ed9121'
+            }else {
+                return 'red'
+            }
+        },
+        selecionaInstrutor (instrutor) {
+            let uid = instrutor['.uid']
+            let id =  uid.split('/')[4]
+            this.$router.push('/instrutor/' + id)
 
         }
     }
@@ -56,6 +94,12 @@ export default {
 .quantidade-alunos {
     font-weight: 300;
     color: black;
+}
+
+.especializacao {
+    font-size: 0.7em;
+    color: gray;
+
 }
  
 </style>
