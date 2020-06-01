@@ -17,7 +17,7 @@
         v-row.font3(no-gutters style='padding: 0; width: 100%;')
           v-col Serviços
           v-col(cols='auto' style='font-weight: 500; font-size: 14px;') Ver mais
-        v-row.font4(no-gutters style='padding: 4px 0 0 0;') Escolha um dos mais diversos serviços
+        v-row.font4(no-gutters style='padding: 4px 0 0 0;') Escolha um serviço
       v-ons-row(width='100%' style='padding: 0 0 16px 0')
         v-row(style='padding: 0; width: 100%;')
           v-col(cols='4' style='padding: 4px')
@@ -69,19 +69,19 @@
       v-divider
       v-ons-row(width='100%' style='padding: 16px 0 8px 0;')
         v-row.font3(no-gutters style='padding: 0; width: 100%;')
-          v-col Seus professores
+          v-col Seus exercícios
           v-col(cols='auto' style='font-weight: 500; font-size: 14px;') Ver mais
-        v-row.font4(no-gutters style='padding: 4px 0 0 0;') Veja seus treinos
+        v-row.font4(no-gutters style='padding: 4px 0 0 0;') Veja seus exercícios de hoje
       v-ons-row(width='100%')
         v-row(no-gutters style='max-width: calc(100% + 10px); position: relative;')
           v-slide-group.sliderGroupSetts(v-model='model' style='max-width: 100%;')
-            v-slide-item(v-for='(instrutor, i) in instrutores' :key='i')
-              v-card.borderInstrutor.boxDone(v-if='i == 0' outlined height='250' width='200' :class='{ "doneBadge": instrutor.done }' style='margin: 4px 4px 20px 1px; overflow: hidden;')
-                v-img(height='250' :src='instrutor.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
+            v-slide-item(v-for='(treino, i) in treinos' :key='i')
+              v-card.borderInstrutor.boxDone(v-if='i == 0' outlined height='250' width='200' :class='{ "doneBadge": treino.done }' style='margin: 4px 4px 20px 1px; overflow: hidden;')
+                v-img(height='250' :src='treino.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
                 v-container(style='padding-top: 5px; position: absolute; bottom: 0; width: 100%; height: 70px; background: rgba(48, 27, 20, 0.5);')
                   v-layout(column)
                     v-flex(xs12)
-                      h5(style='display: inline; margin-bottom: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: white;') {{instrutor.name}}  
+                      h5(style='display: inline; margin-bottom: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: white;') {{treino.name}}  
                       span(style='position: relative; top: 2px;')
                         svg(style="width:14px;height:14px;" viewBox="0 0 24 24")
                           path(fill="#fff" d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z")
@@ -92,13 +92,13 @@
                       h5(style='margin: 5px 0 0 0; font-weight: 400; font-size: 12px; letter-spacing: -0.83px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino Parte Superior
                   v-row(no-gutters style='padding: 0;')
                     v-col(style='padding: 3px 0 0 0;')
-                      .modalidadeBadge {{ instrutor.modalidade }}
-              v-card.borderInstrutor.boxDone(v-else outlined height='250' width='200' :class='{ "doneBadge": instrutor.done }' style='margin: 4px 4px 20px 4px; overflow: hidden;')
-                v-img(height='250' :src='instrutor.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
+                      .modalidadeBadge {{ treino.modalidade }}
+              v-card.borderinstrutor.boxDone(v-else outlined height='250' width='200' :class='{ "doneBadge": treino.done }' style='margin: 4px 4px 20px 4px; overflow: hidden;')
+                v-img(height='250' :src='treino.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
                 v-container(style='padding-top: 5px; position: absolute; bottom: 0; width: 100%; height: 70px; background: rgba(48, 27, 20, 0.5);')
                   v-layout(column)
                     v-flex(xs12)
-                      h5(style='display: inline; margin-bottom: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: white;') {{instrutor.name}}  
+                      h5(style='display: inline; margin-bottom: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: white;') {{treino.name}}  
                       span(style='position: relative; top: 2px;')
                         svg(style="width:14px;height:14px;" viewBox="0 0 24 24")
                           path(fill="#fff" d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z")
@@ -109,7 +109,7 @@
                       h5(style='margin: 5px 0 0 0; font-weight: 400; font-size: 12px; letter-spacing: -0.83px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino Parte Superior
                   v-row(no-gutters style='padding: 0;')
                     v-col(style='padding: 3px 0 0 0;')
-                      .modalidadeBadge {{ instrutor.modalidade}}
+                      .modalidadeBadge {{ treino.modalidade}}
 </template>
 
 <script>
@@ -122,18 +122,43 @@ export default {
       model: [],
       cardHeight: 500,
       showDiv: false,
-      instrutores: []
+      treinos: [
+        {
+          picture_url: 'https://blog.gsuplementos.com.br/wp-content/uploads/2018/08/229899-marcelo-faria-saiba-como-executar-os-exercicios-no-supino-reto-corretamente.jpg',
+          name: 'Supino Reto',
+          done: true,
+          modalidade: 'musculação'
+        },
+        {
+          picture_url: 'https://static.wixstatic.com/media/c4822e_74eed0a3c1d84b4580f671de6ed82fd0~mv2.jpg',
+          name: 'Resistência aeróbica',
+          done: true,
+          modalidade: 'futebol'
+        },
+        {
+          picture_url: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/05/burpees-1280x720.jpg',
+          name: 'Burpees',
+          done: false,
+          modalidade: 'natação'
+        },
+        {
+          picture_url: 'https://www.feitodeiridium.com.br/wp-content/uploads/2017/01/melhores-exercicios-remada-curvada-600x400.jpg',
+          name: 'Remada curvada na barra',
+          done: true,
+          modalidade: 'musculação'
+        }
+      ]
     }
   },
   created () {
-    const that = this
-    this.$fiery(firebase.firestore().collection('instrutores'), {
-        query: q => q.where('musculacao', '==', true),
-        onSuccess: (todos) => {
-            console.log(todos)
-            that.instrutores = todos
-        }
-    })
+    // const that = this
+    // this.$fiery(firebase.firestore().collection('instrutores'), {
+    //     query: q => q.where('musculacao', '==', true),
+    //     onSuccess: (todos) => {
+    //         console.log(todos)
+    //         that.instrutores = todos
+    //     }
+    // })
   }
 }
 </script>
