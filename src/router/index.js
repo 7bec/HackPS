@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Begin from '../views/Begin.vue'
-import Home from '../views/Home.vue'
+import HomeAluno from '../views/HomeAluno.vue'
+import HomeProfessor from '../views/HomeProfessor.vue'
 import Login from '../views/Login.vue'
 import CadastroAluno from '../views/CadastroAluno'
 import EscolhaModalidade from '../views/EscolhaModalidade.vue'
@@ -20,7 +21,7 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/begin',
+    path: '/',
     name: 'Begin',
     component: Begin,
     meta: { showToolbar: false }
@@ -32,9 +33,15 @@ const routes = [
     meta: { showToolbar: false }
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home,
+    path: '/homeAluno',
+    name: 'HomeAluno',
+    component: HomeAluno,
+    meta: { showToolbar: true }
+  },
+  {
+    path: '/homeProfessor',
+    name: 'HomeProfessor',
+    component: HomeProfessor,
     meta: { showToolbar: true }
   },
   {
