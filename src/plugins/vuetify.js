@@ -6,9 +6,9 @@ Vue.use(Vuetify);
 export default new Vuetify({
     theme: {
         themes: { 
-            primary: 'EF2929',
-            secondary: 'F05429',
-            grey: '394149',
+            primary: '#EF2929',
+            secondary: '#F05429',
+            grey: '#394149',
             black: '#000',
             white: '#fff'
          },

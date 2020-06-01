@@ -139,6 +139,7 @@ li:before {
   position: relative;
   z-index: 2;
   font-size: 20px;
+  box-shadow: rgba(31, 70, 88, 0.04) 0px 8px 10px 0px;
 }
 li.active {
   color: rgba(240,84,41,1);
@@ -153,6 +154,7 @@ li:after {
   top: 35px;
   left: -50%;
   z-index: 1;
+  box-shadow: rgba(31, 70, 88, 0.04) 0px 8px 10px 0px;
 }
 li:first-child:after {
   content: none;

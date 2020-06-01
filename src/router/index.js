@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Begin from '../views/Begin.vue'
 import Home from '../views/Home.vue'
+import Settings from '../views/Settings.vue'
 import Login from '../views/Login.vue'
 import CadastroAluno from '../views/CadastroAluno'
 import EscolhaModalidade from '../views/EscolhaModalidade.vue'
@@ -20,16 +22,28 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
-    name: 'Home',
-    component: Home,
-    // meta: { showToolbar: true }
+    path: '/begin',
+    name: 'Begin',
+    component: Begin,
+    meta: { showToolbar: false }
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
     meta: { showToolbar: false }
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: Home,
+    meta: { showToolbar: true }
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
+    meta: { showToolbar: true }
   },
   {
     path: '/cadastroaluno',
@@ -101,7 +115,7 @@ const routes = [
   {
     path: '/escolhaFuncao',
     name: 'EscolhaFuncao',
-    component: Home,
+    component: Begin,
     meta: { showToolbar: false }
   },
   {
