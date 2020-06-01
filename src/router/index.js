@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Begin from '../views/Begin.vue'
 import HomeAluno from '../views/HomeAluno.vue'
 import HomeProfessor from '../views/HomeProfessor.vue'
+import Settings from '../views/Settings.vue'
 import Login from '../views/Login.vue'
 import CadastroAluno from '../views/CadastroAluno'
 import EscolhaModalidade from '../views/EscolhaModalidade.vue'
@@ -42,6 +43,12 @@ const routes = [
     path: '/homeProfessor',
     name: 'HomeProfessor',
     component: HomeProfessor,
+    meta: { showToolbar: true }
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    component: Settings,
     meta: { showToolbar: true }
   },
   {

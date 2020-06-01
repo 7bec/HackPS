@@ -7,7 +7,7 @@
           div.font1 Olá, <b>Carlos</b>
           div.font2 Qual o treino de hoje?
         v-ons-col(style='position: relative;')
-          div(style='position: absolute; right: 0; top: 2px;')
+          div(@click='$router.push("/settings")' style='position: absolute; right: 0; top: 2px;')
             v-avatar(style='box-shadow: rgba(31, 70, 88, 0.1) 0px 3px 10px 0px;')
               img(src="https://www.thispersondoesnotexist.com/image")
             div(style='position: absolute; top: 0; right: 0; height: 20px; width: 20px; background-color: white; border-radius: 50%; padding: 2px 4px 4px 4px; box-shadow: 0px 0px 3px -1px rgba(0,0,0,0.75);')
