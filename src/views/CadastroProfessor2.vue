@@ -19,13 +19,29 @@
                   v-col(cols='12')
                     div.font2(style='margin-bottom: 10px;') Cadastro no APP
                     div.font3(style='margin-bottom: 20px;') Preencha seus dados para continuar
+                  //- v-col(cols='12')
+                  //-   ons-input.custom-input(placeholder='Língua' modifier='material' float)
+                  //-     input.text-input.text-input--material(type='text'  v-model='user.language' style='height: 40px; font-size: 20px;')
+                  //-     span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Língua' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.language' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Telefone' modifier='material' v-mask="'(##) #########'" float)
+                      input.text-input.text-input--material(type='text'  v-model='user.phone' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Telefone' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.phone' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='País' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.country' style='height: 40px; font-size: 20px;')
+                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
+                  v-col(cols='12')
+                    ons-input.custom-input(placeholder='Estado' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.state' style='height: 40px; font-size: 20px;')
+                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
+                  v-col(cols='12')
+                    ons-input.custom-input(placeholder='Cidade' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.city' style='height: 40px; font-size: 20px;')
+                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
+                  v-col(cols='12')
+                    ons-input.custom-input(placeholder='Academia' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.gym' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
                     ons-button.font1.custom-button(@click='$router.push("/cadastroprofessor3")' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
@@ -129,6 +145,7 @@ li:before {
   position: relative;
   z-index: 2;
   font-size: 20px;
+  box-shadow: rgba(31, 70, 88, 0.04) 0px 8px 10px 0px;
 }
 li.active {
   color: rgba(240,84,41,1);
@@ -143,6 +160,7 @@ li:after {
   top: 35px;
   left: -50%;
   z-index: 1;
+  box-shadow: rgba(31, 70, 88, 0.04) 0px 8px 10px 0px;
 }
 li:first-child:after {
   content: none;

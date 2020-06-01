@@ -17,8 +17,8 @@
               v-ons-col(width='100%')
                 v-row(style='width: 100%' justify='space-around' no-gutters)
                   v-col(cols='12')
-                    div.font2(style='margin-bottom: 10px;') Cadastro no APP
-                    div.font3(style='margin-bottom: 20px;') Preencha seus dados para continuar
+                    div.font2(style='margin-bottom: 10px;') Informações pessoais
+                    div.font3(style='margin-bottom: 20px;') Preencha os campos abaixo para nos conhecermos melhor
                   v-col(cols='12')
                     ons-input.custom-input(placeholder='Email' modifier='material' float)
                       input.text-input.text-input--material(type='text'  v-model='user.email' style='height: 40px; font-size: 20px;')
@@ -133,6 +133,7 @@ li:before {
   position: relative;
   z-index: 2;
   font-size: 20px;
+  box-shadow: rgba(31, 70, 88, 0.04) 0px 8px 10px 0px;
 }
 li.active {
   color: rgba(240,84,41,1);
@@ -147,6 +148,7 @@ li:after {
   top: 35px;
   left: -50%;
   z-index: 1;
+  box-shadow: rgba(31, 70, 88, 0.04) 0px 8px 10px 0px;
 }
 li:first-child:after {
   content: none;

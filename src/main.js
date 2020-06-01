@@ -10,7 +10,9 @@ import 'onsenui/css/onsen-css-components.css';
 import vuetify from './plugins/vuetify';
 import FieryVue from 'fiery-vue'
 import StarRating from 'vue-star-rating'
+import VueMask from 'v-mask'
 
+Vue.use(VueMask);
 Vue.use(VueOnsen); // VueOnsen set here as plugin to VUE. Done automatically if a call to window.Vue exists in the startup code.
 Vue.use(FieryVue)
 Vue.component('star-rating', StarRating);

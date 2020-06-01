@@ -17,24 +17,20 @@
               v-ons-col(width='100%')
                 v-row(style='width: 100%' justify='space-around' no-gutters)
                   v-col(cols='12')
-                    div.font2(style='margin-bottom: 10px;') Cadastro no APP
-                    div.font3(style='margin-bottom: 20px;') Preencha seus dados para continuar
+                    div.font2(style='margin-bottom: 10px;') Dados pessoais
+                    div.font3(style='margin-bottom: 20px;') Preencha os campos abaixo para nos conhecermos melhor
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='País' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.country' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Nome completo' modifier='material' float)
+                      input.text-input.text-input--material(type='text' v-model='user.name' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Estado' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.state' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Data de Nascimento' v-mask="'##/##/####'" modifier='material' float)
+                      input.text-input.text-input--material(type='text'    v-model='user.born' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Cidade' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.city' style='height: 40px; font-size: 20px;')
-                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
-                  v-col(cols='12')
-                    ons-input.custom-input(placeholder='Academia' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.gym' style='height: 40px; font-size: 20px;')
-                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
+                    ons-select.custom-input.select-input--material(placeholder='Gênero' modifier='material' float v-model='user.gender' style='font-family: roboto; font-size: 20px; text')
+                      option.text-input.text-input--material.text-input__label.text-input--material__label(type='text' v-for='gender in genders' :key="gender.text" :value="gender.text" style='height: 40px; font-size: 20px;')
+                        span.select-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;') {{gender.text}}
                   v-col(cols='12')
                     ons-button.font1.custom-button(@click='$router.push("/cadastroprofessor2")' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
                       | Próximo
@@ -43,6 +39,11 @@
   export default {
     data () {
       return {
+        genders: [
+          {text: 'Masculino'},
+          {text: 'Feminino'},
+          {text: 'Outros'}
+        ],
         cadastroStep: 1,
         user: {
           name: '',
@@ -57,6 +58,7 @@
           password: '',
           language: ''
         }
+
       }
     },
     methods: {
@@ -137,6 +139,7 @@ li:before {
   position: relative;
   z-index: 2;
   font-size: 20px;
+  box-shadow: rgba(31, 70, 88, 0.04) 0px 8px 10px 0px;
 }
 li.active {
   color: rgba(240,84,41,1);
@@ -151,6 +154,7 @@ li:after {
   top: 35px;
   left: -50%;
   z-index: 1;
+  box-shadow: rgba(31, 70, 88, 0.04) 0px 8px 10px 0px;
 }
 li:first-child:after {
   content: none;
@@ -172,6 +176,7 @@ li:before {
 }
 .custom-input {
   width: 100%;
+  color: #afafaf !important;
   margin-bottom: 25px;
 }
 .text-input--material:focus {
@@ -182,6 +187,21 @@ li:before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.select-input--material:focus {
+  background-image: linear-gradient(rgba(239,41,41,1) 0%, rgba(240,84,41,1) 45%) !important
+}
+.select-input--material__label--active {
+  background: -webkit-linear-gradient(90deg, rgba(239,41,41,1) 0%, rgba(240,84,41,1) 45%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.select-input--material {
+  color: #afafaf !important;
+  text-transform: uppercase;
+  font-size: 20px;
+}
 .custom-button {
   border-radius: 25px;
   background: rgb(239,41,41) !important;
@@ -189,5 +209,12 @@ li:before {
   position: absolute;
   bottom: 0;
   right: 24px;
+}
+</style>
+
+<style>
+.select-input--material {
+  color: #afafaf !important;
+  font-size: 20px !important;
 }
 </style>
