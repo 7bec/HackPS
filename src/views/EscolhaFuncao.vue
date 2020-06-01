@@ -25,7 +25,7 @@ export default {
   name: 'Home',
   methods: {
     pushLogin () {
-      this.$router.push('/login')
+      this.$router.push('/')
     },
     pushAluno () {
       this.$router.push('/cadastroAluno')
