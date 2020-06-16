@@ -49,7 +49,7 @@ const routes = [
     meta: { showToolbar: true }
   },
   {
-    path: '/professorprofile',
+    path: '/professorprofile/:idInstrutor',
     name: 'ProfessorProfile',
     component: ProfessorProfile,
     meta: { showToolbar: true }

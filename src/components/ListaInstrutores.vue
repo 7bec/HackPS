@@ -65,7 +65,7 @@ export default {
         selecionaInstrutor (instrutor) {
             let uid = instrutor['.uid']
             let id =  uid.split('/')[4]
-            this.$router.push('/instrutor/' + id)
+            this.$router.push('/professorprofile/' + id)
 
         }
     }
