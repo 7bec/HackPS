@@ -11,51 +11,50 @@
               ul
                 li.active Sobre você
                 li.active Contato
-                li.active Conta
+                li.active Especialidades
+                li Conta
           div.table-item.fill(style='position: relative')
             v-ons-row.background-section(style='height: 100%;')
               v-ons-col(width='100%')
                 v-row(style='width: 100%' justify='space-around' no-gutters)
                   v-col(cols='12')
-                    div.font2(style='margin-bottom: 10px;') Informações pessoais
+                    div.font2(style='margin-bottom: 10px;') Escolha 3 especialidades
                     div.font3(style='margin-bottom: 20px;') Preencha os campos abaixo para nos conhecermos melhor
-                  v-col(cols='12')
-                    ons-input.custom-input(placeholder='Email' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.email' style='height: 40px; font-size: 20px;')
-                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
-                  v-col(cols='12')
-                    ons-input.custom-input(placeholder='Senha' modifier='material' float)
-                      input.text-input.text-input--material(type='password'  v-model='user.password' style='height: 40px; font-size: 20px;')
-                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
-                  v-col(cols='12')
-                    ons-input.custom-input(placeholder='Confirmar senha' modifier='material' float)
-                      input.text-input.text-input--material(type='password'  v-model='user.password' style='height: 40px; font-size: 20px;')
-                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
-                  v-col(cols='12')
-                    ons-button.font1.custom-button(style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
-                      | Próximo
+                  v-row.row(cols='12' v-for="(especialidade,i) in especialidades" :key="i")
+                    v-col.column
+                      v-ons-card.card1(@click='changeColor()' :class="{'corCinza':isActive , 'corLaranja': !isActive }")
+                        p(style='font-size:15px;') {{especialidade}}
+                 
+              v-col(cols='12')
+                ons-button.font1.custom-button(@click='nextPage()' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
+                  | Próximo
 </template>
 <script>
   export default {
     data () {
       return {
+        genders: [
+          {text: 'Masculino'},
+          {text: 'Feminino'},
+          {text: 'Outros'}
+        ],
         cadastroStep: 1,
-        user: {
-          name: '',
-          gender: '',
-          born: '',
-          country: '',
-          city: '',
-          state: '',
-          gym: '',
-          email: '',
-          phone: '',
-          password: '',
-          language: ''
-        }
+        
+        especialidades: ['Funcional','Crossfit','Emagrecimento','3ª Idade','Treino funcional','Musculação','Hipertrofia',
+                        'Treino em casa', 'HIIT', 'Yoga','MMT','LPO','Força','Corrida','Condicionamento físico','Definição muscular','Calistenia','Funcional Fight','Artes maciais','Luta'],
+        isActive:true
+        
+
       }
     },
     methods: {
+      nextPage() {
+
+        this.$router.push("/cadastroprofessor4")
+      },
+      changeColor(){
+        this.isActive ^= true
+      },
     },
   }
 </script>
@@ -63,12 +62,26 @@
 .font {
 	font-family: roboto;
 }
+.corCinza{
+  background-color:rgba(232, 232, 232, 0.7);
+}
+.corLaranja{
+  background: rgba(240,84,41,1) !important;
+}
 .font2 {
-  font-size: 2.125rem!important;
+  font-size: 1.7rem!important;
   line-height: 2.5rem;
   letter-spacing: .0073529412em!important;
   font-weight: 600;
   font-family: Roboto,sans-serif!important;
+}
+.column{
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+.row{
+  margin: 0 -5px;
 }
 .font3 {
   font-size: 1rem;
@@ -78,11 +91,22 @@
   font-weight: 600;
   font-family: Roboto,sans-serif!important;
 }
+.test{
+  width: 35%;
+  padding: 0 0px;
+}
 .background {
   background-image: url('../../imagens/background-login-muie(3).png');
   background-origin: content-box;
   background-position: center;
   background-size: cover;
+}
+.card1{
+  border-radius:20px;
+  color:rgba(0,0,0, 0.5);
+  /* background-color:rgba(232, 232, 232, 0.7); */
+  text-align:center;
+  padding: 16px;
 }
 .table {
   height: 100%;
@@ -170,6 +194,7 @@ li:before {
 }
 .custom-input {
   width: 100%;
+  color: #afafaf !important;
   margin-bottom: 25px;
 }
 .text-input--material:focus {
@@ -180,12 +205,36 @@ li:before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.select-input--material:focus {
+  background-image: linear-gradient(rgba(239,41,41,1) 0%, rgba(240,84,41,1) 45%) !important
+}
+.select-input--material__label--active {
+  background: -webkit-linear-gradient(90deg, rgba(239,41,41,1) 0%, rgba(240,84,41,1) 45%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.select-input--material {
+  color: #afafaf !important;
+  text-transform: uppercase;
+  font-size: 20px;
+}
 .custom-button {
   border-radius: 25px;
   background: rgb(239,41,41) !important;
   background: linear-gradient(90deg, rgba(239,41,41,1) 0%, rgba(240,84,41,1) 45%) !important;
-  position: absolute;
+  /* position: absolute; */
+  margin-top: 30px;
   bottom: 0;
-  right: 24px;
+
 }
 </style>
+
+<style>
+.select-input--material {
+  color: #afafaf !important;
+  font-size: 20px !important;
+}
+</style>
+

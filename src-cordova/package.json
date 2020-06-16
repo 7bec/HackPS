@@ -22,7 +22,9 @@
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {}
+      "cordova-plugin-whitelist": {},
+      "cordova-plugin-buildinfo": {},
+      "cordova-universal-links-plugin": {}
     },
     "platforms": [
       "android",

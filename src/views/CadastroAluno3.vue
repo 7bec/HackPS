@@ -12,6 +12,7 @@
                 li.active Sobre você
                 li.active Contato
                 li.active Conta
+                li.active Objetivos
           div.table-item.fill(style='position: relative')
             v-ons-row.background-section(style='height: 100%;')
               v-ons-col(width='100%')
@@ -20,44 +21,61 @@
                     div.font2(style='margin-bottom: 10px;') Cadastro no APP
                     div.font3(style='margin-bottom: 20px;') Preencha seus dados para continuar
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Email' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.email' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='País' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.country' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Senha' modifier='material' float)
-                      input.text-input.text-input--material(type='password'  v-model='user.password' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Estado' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.state' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Confirmar senha' modifier='material' float)
-                      input.text-input.text-input--material(type='password'  v-model='user.password' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Cidade' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.city' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-button.font1.custom-button(style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
+                    ons-input.custom-input(placeholder='Academia' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.gym' style='height: 40px; font-size: 20px;')
+                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
+                  v-col(cols='12')
+                    ons-button.font1.custom-button(@click='nextPage()' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
                       | Próximo
 </template>
 <script>
-  export default {
-    data () {
-      return {
-        cadastroStep: 1,
-        user: {
-          name: '',
-          gender: '',
-          born: '',
-          country: '',
-          city: '',
-          state: '',
-          gym: '',
-          email: '',
-          phone: '',
-          password: '',
-          language: ''
-        }
-      }
-    },
-    methods: {
-    },
+import firebase from 'firebase'
+export default {
+  fiery:true,
+  data () {
+    return {
+      cadastroStep: 1,
+      user: {
+        name: '',
+        gender: '',
+        born: '',
+        country: '',
+        city: '',
+        state: '',
+        gym: '',
+        email: '',
+        phone: '',
+        password: '',
+        language: ''
+      },
+      cadastroAluno: this.$fiery(firebase.firestore().collection('alunos'))
+    }
+  },
+  methods: {
+    nextPage() {
+      this.$fires.cadastroAluno.doc(this.$store.getters.doc).update({
+        country: this.user.country,
+        state: this.user.state,
+        city: this.user.city,
+        gym: this.user.gym,
+        
+      })
+      this.$router.push("/cadastroAluno4")
+   }
   }
+}
 </script>
 <style scoped>
 .font {

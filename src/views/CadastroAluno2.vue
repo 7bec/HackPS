@@ -12,6 +12,7 @@
                 li.active Sobre você
                 li.active Contato
                 li Conta
+                li Objetivos
           div.table-item.fill(style='position: relative')
             v-ons-row.background-section(style='height: 100%;')
               v-ons-col(width='100%')
@@ -28,11 +29,13 @@
                       input.text-input.text-input--material(type='text'  v-model='user.phone' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-button.font1.custom-button(@click='$router.push("/cadastroAluno3")' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
+                    ons-button.font1.custom-button(@click='nextPage()' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
                       | Próximo
 </template>
 <script>
+import firebase from 'firebase'
   export default {
+    fiery:true,
     data () {
       return {
         cadastroStep: 1,
@@ -48,10 +51,19 @@
           phone: '',
           password: '',
           language: ''
-        }
+        },
+        cadastroAluno: this.$fiery(firebase.firestore().collection('alunos'))
       }
     },
     methods: {
+      nextPage() {
+        this.$fires.cadastroAluno.doc(this.$store.getters.doc).update({
+          language: this.user.language,
+          phone: this.user.phone,
+          
+        })
+        this.$router.push("/cadastroAluno3")
+      }
     },
   }
 </script>

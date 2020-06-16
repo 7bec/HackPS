@@ -2,7 +2,7 @@
     v-ons-page
       v-ons-toolbar(id='toolbar' modifier='transparent cover-content')
         div.left
-          v-icon(dark style='width: 44px; height: 44px; font-size: 44px;') mdi-chevron-left
+          v-icon(@click='goBack()' dark style='width: 44px; height: 44px; font-size: 44px;') mdi-chevron-left
       div.background
       div.content
         div.table
@@ -10,40 +10,38 @@
             div.step_progressbar
               ul
                 li.active Sobre você
-                li Contato
-                li Conta
+                li.active Contato
+                li.active Especialidades
+                li.active Conta
           div.table-item.fill(style='position: relative')
             v-ons-row.background-section(style='height: 100%;')
               v-ons-col(width='100%')
                 v-row(style='width: 100%' justify='space-around' no-gutters)
                   v-col(cols='12')
-                    div.font2(style='margin-bottom: 10px;') Dados pessoais
+                    div.font2(style='margin-bottom: 10px;') Informações pessoais
                     div.font3(style='margin-bottom: 20px;') Preencha os campos abaixo para nos conhecermos melhor
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Nome completo' modifier='material' float)
-                      input.text-input.text-input--material(type='text' v-model='user.name' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Email' modifier='material' float)
+                      input.text-input.text-input--material(type='text'  v-model='user.email' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Data de Nascimento' v-mask="'##/##/####'" modifier='material' float)
-                      input.text-input.text-input--material(type='text'    v-model='user.born' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Senha' modifier='material' float)
+                      input.text-input.text-input--material(type='password'  v-model='user.password' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-select.custom-input.select-input--material(placeholder='Gênero' modifier='material' float v-model='user.gender' style='font-family: roboto; font-size: 20px; text')
-                      option.text-input.text-input--material.text-input__label.text-input--material__label(type='text' v-for='gender in genders' :key="gender.text" :value="gender.text" style='height: 40px; font-size: 20px;')
-                        span.select-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;') {{gender.text}}
+                    ons-input.custom-input(placeholder='Confirmar senha' modifier='material' float)
+                      input.text-input.text-input--material(type='password'  v-model='user.confirmPassword' style='height: 40px; font-size: 20px;')
+                      span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-button.font1.custom-button(@click='$router.push("/cadastroprofessor2")' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
+                    ons-button.font1.custom-button(@click='onsignUp()' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
                       | Próximo
 </template>
 <script>
+import firebase from 'firebase'
   export default {
+    fiery:true,
     data () {
       return {
-        genders: [
-          {text: 'Masculino'},
-          {text: 'Feminino'},
-          {text: 'Outros'}
-        ],
         cadastroStep: 1,
         user: {
           name: '',
@@ -56,13 +54,21 @@
           email: '',
           phone: '',
           password: '',
+          confirmPassword:'',
           language: ''
-        }
-
+        },
+        cadastroProfessor: this.$fiery(firebase.firestore().collection('professor')),
       }
     },
     methods: {
-    },
+       onsignUp(){
+        this.$store.dispatch('signUserUp', {email: this.user.email, password: this.user.password})
+        this.$router.push("/homeProfessor")
+      },
+      goBack() {
+        this.$router.push({ name: this.$route.matched[this.$route.matched.length - 2].name });
+      }
+    }
   }
 </script>
 <style scoped>
@@ -176,7 +182,6 @@ li:before {
 }
 .custom-input {
   width: 100%;
-  color: #afafaf !important;
   margin-bottom: 25px;
 }
 .text-input--material:focus {
@@ -187,21 +192,6 @@ li:before {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-.select-input--material:focus {
-  background-image: linear-gradient(rgba(239,41,41,1) 0%, rgba(240,84,41,1) 45%) !important
-}
-.select-input--material__label--active {
-  background: -webkit-linear-gradient(90deg, rgba(239,41,41,1) 0%, rgba(240,84,41,1) 45%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.select-input--material {
-  color: #afafaf !important;
-  text-transform: uppercase;
-  font-size: 20px;
-}
 .custom-button {
   border-radius: 25px;
   background: rgb(239,41,41) !important;
@@ -209,12 +199,5 @@ li:before {
   position: absolute;
   bottom: 0;
   right: 24px;
-}
-</style>
-
-<style>
-.select-input--material {
-  color: #afafaf !important;
-  font-size: 20px !important;
 }
 </style>
