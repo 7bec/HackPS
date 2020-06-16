@@ -137,6 +137,7 @@ export default new Vuex.Store({
       commit('setLoading', true)
       commit('clearError')
       firebase.auth().signInWithRedirect(googleProvider)
+      router.push('/homeAluno')
     },
     
     signUserFacebook({commit}){
@@ -144,6 +145,7 @@ export default new Vuex.Store({
       commit('setLoading', true)
       commit('clearError')
       firebase.auth().signInWithRedirect(facebookProvider)
+      router.push('/homeAluno')
       
     }
   }
