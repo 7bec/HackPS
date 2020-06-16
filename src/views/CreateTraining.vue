@@ -96,6 +96,8 @@
                     div.font5 Exercício Aeróbico {{i}}
               .right
                 v-icon(medium color='rgb(202, 33, 33)') mdi-import
+    v-ons-fab(position="bottom right" style='margin-bottom: 35px;')
+      v-icon(color='#fff' style='margin-bottom: 4px;') mdi-check
     div.tabbar
       v-bottom-navigation(:value='activeBtn' grow color='#f05429')
         v-btn
@@ -183,5 +185,8 @@ export default {
   padding: 12px 0 12px 16px;
   font-weight: 500;
   line-height: 24px;
+}
+ons-fab.fab, ons-speed-dial-item.fab, button.fab {
+    background-color: #4CAF50;
 }
 </style>
