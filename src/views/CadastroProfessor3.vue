@@ -22,7 +22,9 @@
                     div.font3(style='margin-bottom: 20px;') Preencha os campos abaixo para nos conhecermos melhor
                   v-row.row(cols='12' v-for="(especialidade,i) in especialidades" :key="i")
                     v-col.column
-                      v-ons-card.card1(@click='changeColor()' :class="{'corCinza':isActive , 'corLaranja': !isActive }")
+                      v-ons-card.card1(@click='changeColor()' v-if="isActive==true" class="corCinza")
+                        p(style='font-size:15px;') {{especialidade}}
+                      v-ons-card.card1(@click='changeColor()' v-else class="corLaranja")
                         p(style='font-size:15px;') {{especialidade}}
                  
               v-col(cols='12')
@@ -30,7 +32,9 @@
                   | Próximo
 </template>
 <script>
+import firebase from 'firebase'
   export default {
+    fiery:true,
     data () {
       return {
         genders: [
@@ -42,14 +46,12 @@
         
         especialidades: ['Funcional','Crossfit','Emagrecimento','3ª Idade','Treino funcional','Musculação','Hipertrofia',
                         'Treino em casa', 'HIIT', 'Yoga','MMT','LPO','Força','Corrida','Condicionamento físico','Definição muscular','Calistenia','Funcional Fight','Artes maciais','Luta'],
-        isActive:true
-        
-
+        isActive:true,
+        cadastroProfessor: this.$fiery(firebase.firestore().collection('professor')),
       }
     },
     methods: {
       nextPage() {
-
         this.$router.push("/cadastroprofessor4")
       },
       changeColor(){
