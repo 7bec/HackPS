@@ -69,47 +69,78 @@
       v-divider
       v-ons-row(width='100%' style='padding: 16px 0 8px 0;')
         v-row.font3(no-gutters style='padding: 0; width: 100%;')
-          v-col Seus exercícios
+          v-col Seu progresso
           v-col(cols='auto' style='font-weight: 500; font-size: 14px;') Ver mais
-        v-row.font4(no-gutters style='padding: 4px 0 0 0;') Veja seus exercícios de hoje
+        v-row.font4(no-gutters style='padding: 4px 0 0 0;') Veja seu progresso na semana
+      v-ons-row(width='100%' style='padding: 8px 0 16px 0;')
+        v-row(no-gutters style='max-width: calc(100% + 10px); position: relative;')
+          v-col(cols='6' style='text-align: center')
+            v-progress-circular(:color='isDone === true ? "#4CAF50" : "#f05429"' width='5' size='100' rotate='90' :value="percentage") 
+              div(v-if='isDone !== true')
+                div(style='font-size: 18px; font-weight: 900; width: 100%;') {{ this.isDone }}
+                div(style='font-size: 14px; font-weight: 700; color: rgb(23, 43, 62);') treinos
+              div(v-else)
+                v-icon(x-large color='#4CAF50') mdi-check-bold
+                div(style='font-size: 18px; font-weight: 900; width: 100%;') {{ this.done + '/' + this.total }}
+          v-col(cols='6' style='text-align: center; align-self: center')
+            div
+              div(style='font-size: 18px; font-weight: 500; color: #f05429') <b>2596</b> kcal
+              div(style='font-size: 13px; font-weight: 700; color: rgb(23, 43, 62); line-height: 20px;') Total da semana
+            div(style='margin-top: 8px;')
+              div(style='font-size: 18px; font-weight: 500; color: #f05429') <b>403</b> kcal
+              div(style='font-size: 13px; font-weight: 700; color: rgb(23, 43, 62); line-height: 20px;') Média por treino
+      v-divider
+      v-ons-row(width='100%' style='padding: 16px 0 8px 0;')
+        v-row.font3(no-gutters style='padding: 0; width: 100%;')
+          v-col Seus treinos
+          v-col(cols='auto' style='font-weight: 500; font-size: 14px;') Ver mais
+        v-row.font4(no-gutters style='padding: 4px 0 0 0;') Veja seus treinos de hoje
       v-ons-row(width='100%')
         v-row(no-gutters style='max-width: calc(100% + 10px); position: relative;')
           v-slide-group.sliderGroupSetts(v-model='model' style='max-width: 100%;')
             v-slide-item(v-for='(treino, i) in treinos' :key='i')
-              v-card.borderInstrutor.boxDone(v-if='i == 0' outlined height='250' width='200' :class='{ "doneBadge": treino.done }' style='margin: 4px 4px 20px 1px; overflow: hidden;')
-                v-img(height='250' :src='treino.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
-                v-container(style='padding-top: 5px; position: absolute; bottom: 0; width: 100%; height: 70px; background: rgba(48, 27, 20, 0.5);')
+              v-card.boxDone(v-if='i == 0' outlined height='274' width='200' style='margin: 4px 4px 20px 1px; overflow: hidden; position: relative; border-radius: 10px; filter: drop-shadow(0px 10px 5px rgba(27, 28, 32, 0.102));')
+                v-img(height='274' :src='treino.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
+                v-container(style='padding-top: 29px; position: absolute; bottom: 0; width: 100%; height: 94px; background: white;')
                   v-layout(column)
                     v-flex(xs12)
-                      h5(style='display: inline; margin-bottom: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: white;') {{treino.name}}  
+                      h5(style='display: inline; margin-bottom: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: #334856;') {{treino.name}}  
                       span(style='position: relative; top: 2px;')
                         svg(style="width:14px;height:14px;" viewBox="0 0 24 24")
-                          path(fill="#fff" d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z")
+                          path(fill="#2196F3" d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z")
                   v-row(no-gutters style='padding: 0;')
                     v-col()
-                      h5(style='margin: 5px 0 0 0; font-weight: 700; font-size: 12px; letter-spacing: -0.83px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino 3/7:
+                      h5(style='margin: 5px 0 0 0; font-weight: 700; font-size: 12px; letter-spacing: -0.83px; color: #7D8184; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino 3/7:
                     v-col(cols='auto')
-                      h5(style='margin: 5px 0 0 0; font-weight: 400; font-size: 12px; letter-spacing: -0.83px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino Parte Superior
+                      h5(style='margin: 5px 0 0 0; font-weight: 400; font-size: 12px; letter-spacing: -0.83px; color: #7D8184; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino Parte Superior
                   v-row(no-gutters style='padding: 0;')
                     v-col(style='padding: 3px 0 0 0;')
                       .modalidadeBadge {{ treino.modalidade }}
-              v-card.borderinstrutor.boxDone(v-else outlined height='250' width='200' :class='{ "doneBadge": treino.done }' style='margin: 4px 4px 20px 4px; overflow: hidden;')
-                v-img(height='250' :src='treino.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
-                v-container(style='padding-top: 5px; position: absolute; bottom: 0; width: 100%; height: 70px; background: rgba(48, 27, 20, 0.5);')
+                v-avatar(color="#FFF" size="48" style='position: absolute; top: 156px; left: 50%; transform: translate(-45%, 0); -webkit-box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); -moz-box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); border-radius: 50%;')
+                  v-progress-circular(:color='treino.done == 100 ? "#4CAF50" : "#f05429"' width='5' size='40' rotate='90' :value="treino.done") 
+                    span(v-if='treino.done != 100' style='font-size: 11.5px; font-weight: 900;') {{ treino.done }}%
+                    v-icon(v-else color='#4CAF50') mdi-check-bold
+              v-card.boxDone(v-else outlined height='274' width='200' style='margin: 4px 4px 20px 4px; overflow: hidden; position: relative; border-radius: 10px; filter: drop-shadow(0px 10px 5px rgba(27, 28, 32, 0.102));')
+                v-img(height='274' :src='treino.picture_url' style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
+                v-container(style='padding-top: 29px; position: absolute; bottom: 0; width: 100%; height: 94px; background: white;')
                   v-layout(column)
                     v-flex(xs12)
-                      h5(style='display: inline; margin-bottom: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: white;') {{treino.name}}  
+                      h5(style='display: inline; margin-bottom: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: #334856;') {{treino.name}}  
                       span(style='position: relative; top: 2px;')
                         svg(style="width:14px;height:14px;" viewBox="0 0 24 24")
-                          path(fill="#fff" d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z")
+                          path(fill="#2196F3" d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z")
                   v-row(no-gutters style='padding: 0;')
                     v-col()
-                      h5(style='margin: 5px 0 0 0; font-weight: 700; font-size: 12px; letter-spacing: -0.83px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino 3/7:
+                      h5(style='margin: 5px 0 0 0; font-weight: 700; font-size: 12px; letter-spacing: -0.83px; color: #7D8184; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino 3/7:
                     v-col(cols='auto')
-                      h5(style='margin: 5px 0 0 0; font-weight: 400; font-size: 12px; letter-spacing: -0.83px; color: rgba(255,255,255,0.9); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino Parte Superior
+                      h5(style='margin: 5px 0 0 0; font-weight: 400; font-size: 12px; letter-spacing: -0.83px; color: #7D8184; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;') Treino Parte Superior
                   v-row(no-gutters style='padding: 0;')
                     v-col(style='padding: 3px 0 0 0;')
                       .modalidadeBadge {{ treino.modalidade}}
+                v-avatar(color="#FFF" size="48" style='position: absolute; top: 156px; left: 50%; transform: translate(-50%, 0); -webkit-box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); -moz-box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); border-radius: 50%;')
+                  v-progress-circular(:color='treino.done == 100 ? "#4CAF50" : "#f05429"' width='5' size='40' rotate='90' :value="treino.done") 
+                    span(v-if='treino.done != 100' style='font-size: 11.5px; font-weight: 900;') {{ treino.done }}%
+                    v-icon(v-else color='#4CAF50') mdi-check-bold
 </template>
 
 <script>
@@ -117,34 +148,54 @@ import firebase from 'firebase'
 export default {
   fiery: true,
   name: 'Home',
+  computed: {
+    isDone () {
+      if (this.done === this.total) {
+        return true
+      } else {
+        return this.done + '/' + this.total
+      }
+    },
+    percentage () {
+      return (this.done/this.total)*100
+    }
+  },
   data () {
     return {
       model: [],
       cardHeight: 500,
       showDiv: false,
+      done: 0,
+      total: 0,
       treinos: [
         {
           picture_url: 'https://blog.gsuplementos.com.br/wp-content/uploads/2018/08/229899-marcelo-faria-saiba-como-executar-os-exercicios-no-supino-reto-corretamente.jpg',
           name: 'Supino Reto',
-          done: true,
+          done: 30,
           modalidade: 'musculação'
         },
         {
           picture_url: 'https://static.wixstatic.com/media/c4822e_74eed0a3c1d84b4580f671de6ed82fd0~mv2.jpg',
           name: 'Resistência aeróbica',
-          done: true,
+          done: 70,
           modalidade: 'futebol'
         },
         {
           picture_url: 'https://www.mundoboaforma.com.br/wp-content/uploads/2020/05/burpees-1280x720.jpg',
           name: 'Burpees',
-          done: false,
+          done: 100,
           modalidade: 'natação'
         },
         {
           picture_url: 'https://www.feitodeiridium.com.br/wp-content/uploads/2017/01/melhores-exercicios-remada-curvada-600x400.jpg',
           name: 'Remada curvada na barra',
-          done: true,
+          done: 90,
+          modalidade: 'musculação'
+        },
+        {
+          picture_url: 'https://www.feitodeiridium.com.br/wp-content/uploads/2017/01/melhores-exercicios-remada-curvada-600x400.jpg',
+          name: 'Remada curvada na barra',
+          done: 100,
           modalidade: 'musculação'
         }
       ]
@@ -159,6 +210,12 @@ export default {
     //         that.instrutores = todos
     //     }
     // })
+    for (let i = 0; this.treinos.length > i; i++) {
+      if (this.treinos[i].done === 100) {
+        this.done++
+      }
+      this.total++
+    }
   }
 }
 </script>
@@ -219,12 +276,6 @@ export default {
   box-shadow: rgba(31, 70, 88, 0.3) 0px 3px 10px 0px;
   height: 110px;
 }
-.borderInstrutor{
-  border-radius: 10px !important;
-  -webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 0px 2px 0px rgba(0,0,0,0.75);
-}
 .boxDone {
   position: relative;
   display: inline-block;
@@ -269,7 +320,7 @@ export default {
 }
 .modalidadeBadge {
   border-radius: 10px;
-  color: rgb(43, 43, 43);
+  color: white;
   font-size: 10px;
   height: 18px;
   letter-spacing: 0;
@@ -282,7 +333,7 @@ export default {
   top: auto;
   transition: .3s cubic-bezier(.25,.8,.5,1);
   white-space: nowrap;
-  background-color: #ffffff!important;
-  border-color: #ffffff!important;
+  background-color: rgba(240,84,41,1)!important;
+  border-color: rgba(240,84,41,1)!important;
 }
 </style>

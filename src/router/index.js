@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Begin from '../views/Begin.vue'
 import HomeAluno from '../views/HomeAluno.vue'
 import HomeProfessor from '../views/HomeProfessor.vue'
+import ProfessorProfile from '../views/ProfessorProfile'
 import Settings from '../views/Settings.vue'
 import Login from '../views/Login.vue'
 import CadastroAluno from '../views/CadastroAluno'
@@ -19,6 +20,7 @@ import CadastroAluno3 from '../views/CadastroAluno3'
 import EscolhaFuncao from '../views/EscolhaFuncao'
 import RedefinirSenha from '../views/RedefinirSenha'
 import Planos from '../views/Planos'
+import Training from '../views/Training'
 Vue.use(VueRouter)
 
 const routes = [
@@ -44,6 +46,12 @@ const routes = [
     path: '/homeprofessor',
     name: 'HomeProfessor',
     component: HomeProfessor,
+    meta: { showToolbar: true }
+  },
+  {
+    path: '/professorprofile',
+    name: 'ProfessorProfile',
+    component: ProfessorProfile,
     meta: { showToolbar: true }
   },
   {
@@ -137,7 +145,12 @@ const routes = [
     component: Planos,
     meta: { showToolbar: false }
   },
-
+  {
+    path: '/training',
+    name: 'Training',
+    component: Training,
+    meta: { showToolbar: false }
+  },
 ]
 
 const router = new VueRouter({
