@@ -35,13 +35,13 @@ const routes = [
     meta: { showToolbar: false }
   },
   {
-    path: '/homeAluno',
+    path: '/homealuno',
     name: 'HomeAluno',
     component: HomeAluno,
     meta: { showToolbar: true }
   },
   {
-    path: '/homeProfessor',
+    path: '/homeprofessor',
     name: 'HomeProfessor',
     component: HomeProfessor,
     meta: { showToolbar: true }
