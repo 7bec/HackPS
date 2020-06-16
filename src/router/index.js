@@ -21,6 +21,7 @@ import EscolhaFuncao from '../views/EscolhaFuncao'
 import RedefinirSenha from '../views/RedefinirSenha'
 import Planos from '../views/Planos'
 import Training from '../views/Training'
+import CreateTraining from '../views/CreateTraining'
 Vue.use(VueRouter)
 
 const routes = [
@@ -149,6 +150,12 @@ const routes = [
     path: '/training',
     name: 'Training',
     component: Training,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/createTraining',
+    name: 'CreateTraining',
+    component: CreateTraining,
     meta: { showToolbar: false }
   },
 ]

@@ -28,7 +28,7 @@
       v-ons-row(width='100%' style='padding: 24px 0 8px 0;')
         v-row.font3(no-gutters style='padding: 0; width: 100%;')
           v-col Seus treinos (17)
-          v-col(cols='auto' style='font-weight: 500; font-size: 14px;')
+          v-col(@click='$router.push("/createTraining")' cols='auto' style='font-weight: 500; font-size: 14px;')
             span Criar novo
             span
               v-icon(small color='rgb(202, 33, 33)') mdi-plus
