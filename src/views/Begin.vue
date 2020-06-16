@@ -28,6 +28,8 @@ export default {
     pushProfessor () {
       this.$router.push('/cadastroProfessor')
     },
+
+
   }
 }
 </script>

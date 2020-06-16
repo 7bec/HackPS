@@ -44,11 +44,15 @@
                       input.text-input.text-input--material(type='text'  v-model='user.gym' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-button.font1.custom-button(@click='$router.push("/cadastroprofessor3")' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
+                    ons-button.font1.custom-button(@click='nextPage()' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
                       | Próximo
+                   
+
 </template>
 <script>
+import firebase from 'firebase'
   export default {
+    fiery:true,
     data () {
       return {
         cadastroStep: 1,
@@ -64,11 +68,25 @@
           phone: '',
           password: '',
           language: ''
-        }
+        },
+        cadastroProfessor: this.$fiery(firebase.firestore().collection('professor')),
       }
     },
     methods: {
+      nextPage() {
+        this.$fires.cadastroProfessor.doc(this.$store.getters.doc).update({
+          phone: this.user.phone,
+          country: this.user.country,
+          state: this.user.state,
+          city: this.user.city,
+          gym: this.user.gym,
+        })
+        this.$router.push("/cadastroprofessor3")
+      }
     },
+    computed: {
+
+    }
   }
 </script>
 <style scoped>
