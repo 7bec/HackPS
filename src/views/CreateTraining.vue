@@ -98,17 +98,17 @@
                 v-icon(medium color='rgb(202, 33, 33)') mdi-import
     v-ons-fab(position="bottom right" style='margin-bottom: 35px;')
       v-icon(color='#fff' style='margin-bottom: 4px;') mdi-check
-    div.tabbar
-      v-bottom-navigation(:value='activeBtn' grow color='#f05429')
-        v-btn
-          span Início
-          v-icon mdi-home
-        v-btn
-          span Treinos
-          v-icon mdi-weight-lifter
-        v-btn
-          span Perfil
-          v-icon mdi-account
+    //- div.tabbar
+    //-   v-bottom-navigation(:value='activeBtn' grow color='#f05429')
+    //-     v-btn
+    //-       span Início
+    //-       v-icon mdi-home
+    //-     v-btn
+    //-       span Treinos
+    //-       v-icon mdi-weight-lifter
+    //-     v-btn
+    //-       span Perfil
+    //-       v-icon mdi-account
 </template>
 
 <script>

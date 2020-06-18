@@ -11,12 +11,7 @@
             v-img(:src='instrutor.picture_url' style='border-radius: 10px;' height="25vh")
         v-col.font(cols='8' style='padding-left: 30px;')
             v-row()
-                span.instrutor-name() {{instrutor.name}}
-            v-row()
-                v-col(style='padding: 0;')
-                    span Doutor
-                //- v-col(style='padding: 0;')
-                //-     span CREF: 4044-PE
+                span.instrutor-name() Dr. {{instrutor.name}}
             v-row
                 span Recife - PE
             v-row
@@ -25,7 +20,7 @@
                 v-chip-group()
                     v-chip( dark :style="`background-color: ${strengthColor(forca)};`" v-for="forca in forcas" :key="forca") {{forca}}
             v-row()
-                span.quantidade-alunos {{instrutor.qtd_alunos}} alunos
+                span.quantidade-alunos Apenas {{instrutor.qtd_alunos}} vagas restantes!
             //- v-row()
             //-     <star-rating v-model='instrutor.rating' :star-size="15" :increment='0.01' :show-rating='false' :read-only='true' :glow="0.1"  glow-color='#0xFF' :border-width="0"></star-rating>
 </template>
