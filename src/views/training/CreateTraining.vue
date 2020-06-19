@@ -37,7 +37,7 @@
       v-ons-row(width='100%' style='padding: 8px 0 8px 0;')
         v-row.font3(no-gutters style='padding: 0; width: 100%;')
           v-col(cols='12')
-            v-tabs(v-model='tab')
+            v-tabs(v-model='tab' center-active)
               v-tab(v-for='(profile, j) in profiles' :key='j' :href="`#tab-${j}`") Perfil {{returnLetter(j)}}
             v-tabs-items(v-model='tab')
               v-tab-item(v-for='(profile, k) in profiles' :key='k' :value='`tab-${k}`')
@@ -45,15 +45,15 @@
                   v-row(no-gutters style='width: 100%; margin-bottom: 4px;')
                     v-col(v-if='i < 6' v-for='(exercise, i) in profiles[k]' :key='i' cols='6' style='padding: 2px 4px;')
                       v-card.boxDone(outlined style='height: 100%; overflow: hidden; position: relative; border-radius: 10px; filter: drop-shadow(0px 10px 5px rgba(27, 28, 32, 0.102));')
-                        v-img(@click='exercise.isSelected = !exercise.isSelected; toggleSelectItem(k)' height='150' :src='exercise.image' :style="exercise.isSelected ? { filter: 'sepia(100%) brightness(100%) grayscale(60%) hue-rotate(90deg) saturate(300%)' } : {}" style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
-                        v-container(@click='exercise.isSelected = !exercise.isSelected; toggleSelectItem(k)' style='padding-top: 16px; padding-bottom: 8px; width: 100%; background: white;')
+                        v-img(@click='toggleSelectItem(k, i)' height='150' :src='exercise.image' :style="exercise.isSelected ? { filter: 'sepia(100%) brightness(100%) grayscale(60%) hue-rotate(90deg) saturate(300%)' } : {}" style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
+                        v-container(@click='toggleSelectItem(k, i)' style='padding-top: 16px; padding-bottom: 8px; width: 100%; background: white;')
                           v-layout(column)
                             v-flex(xs12)
                               h5(style='margin: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: #334856;') {{exercise.name}}
                         div(style='background-color: white; height: 38px; width: 38px; position: absolute; top: 126px; left: 50%; transform: translate(-50%, 0); -webkit-box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); -moz-box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); border-radius: 50%;')
                           div(style='height: 100%; width: 100%; position: relative; padding: 3px;')
                             label.checkbox.checkbox--material(style='background-color: none; overflow: visible; height: 100%; width: 100%;')
-                              input.checkbox__input.checkbox--material__input(v-model='exercise.isSelected' v-on:change="toggleSelectItem(k)" type='checkbox')
+                              input.checkbox__input.checkbox--material__input(v-model='exercise.isSelected' v-on:change="toggleSelectItem(k, i)" type='checkbox')
                               .checkbox__checkmark.checkbox--material__checkmark
                         v-ons-ripple(color='rgba(204, 204, 204, 0.2)')
                     div.seeMore(style='margin-top: 8px; padding: 8px 0 0 0')
@@ -61,9 +61,9 @@
     v-ons-fab(:visible='isAnyoneSelected' @click='showMore = !showMore' position="bottom right" style='background-color: #303F9F; margin-bottom: 35px;')
       v-icon(v-if='!showMore' color='#fff' style='margin-bottom: 4px;') mdi-dots-horizontal
       v-icon(v-if='showMore' color='#fff' style='margin-bottom: 4px;') mdi-close
-    v-ons-fab(:visible='showMore' modifier='mini' position="bottom right" style='position: absolute; bottom: 84px; right: 28px; background-color: #303F9F; margin-bottom: 35px;')
+    v-ons-fab(@click='$router.push("/editExercises")' :visible='showMore' modifier='mini' position="bottom right" style='position: absolute; bottom: 84px; right: 28px; background-color: #43A047; margin-bottom: 35px;')
       v-icon(small color='#fff' style='margin-bottom: 4px;') mdi-check
-    v-ons-fab(@click='newProfile()' :visible='showMore' modifier='mini' position="bottom right" style='position: absolute; bottom: 132px; right: 28px; background-color: #303F9F; margin-bottom: 35px;')
+    v-ons-fab(@click='newProfile()' :visible='showMore' modifier='mini' position="bottom right" style='position: absolute; bottom: 132px; right: 28px; background-color: #f05429; margin-bottom: 35px;')
       v-icon(small color='#fff' style='margin-bottom: 4px;') mdi-plus
     div.tabbar
       v-bottom-navigation(:value='activeBtn' grow color='#f05429')
@@ -181,7 +181,25 @@ pularCorda = {
   route: '/pular-corda',
   isSelected: false
 }
-
+const baseExercises = [
+  polichinelo,
+  corridaParada,
+  alongQuadriceps,
+  alongTorax,
+  flexaoBraco,
+  flexaoRotacao,
+  barraFixa,
+  tricepsBanco,
+  elevacaoLateral,
+  abdominal,
+  agachamentoParede,
+  subidaPernas,
+  squat,
+  agachamentoCalice,
+  agachamentoUnilateral,
+  esteira,
+  pularCorda
+]
 import firebase from 'firebase'
 export default {
   name: 'Training',
@@ -199,46 +217,7 @@ export default {
           }
         ]
       },
-      baseExercises: [
-        polichinelo,
-        corridaParada,
-        alongQuadriceps,
-        alongTorax,
-        flexaoBraco,
-        flexaoRotacao,
-        barraFixa,
-        tricepsBanco,
-        elevacaoLateral,
-        abdominal,
-        agachamentoParede,
-        subidaPernas,
-        squat,
-        agachamentoCalice,
-        agachamentoUnilateral,
-        esteira,
-        pularCorda
-      ],
-      profiles: [ 
-        [
-          polichinelo,
-          corridaParada,
-          alongQuadriceps,
-          alongTorax,
-          flexaoBraco,
-          flexaoRotacao,
-          barraFixa,
-          tricepsBanco,
-          elevacaoLateral,
-          abdominal,
-          agachamentoParede,
-          subidaPernas,
-          squat,
-          agachamentoCalice,
-          agachamentoUnilateral,
-          esteira,
-          pularCorda 
-        ]
-       ],
+      profiles: [],
       activeBtn: 1 // inútil mas precisa.
     }
   },
@@ -249,9 +228,16 @@ export default {
       }
     }
   },
+  created () {
+    this.profiles[0] = JSON.parse(JSON.stringify(baseExercises))
+    console.log(this.profiles)
+  },
   methods: {
-    toggleSelectItem (tabIndex) {
+    toggleSelectItem (tabIndex, exerciseIndex) {
       console.log(tabIndex)
+      console.log(exerciseIndex)
+      this.profiles[tabIndex][exerciseIndex].isSelected = !this.profiles[tabIndex][exerciseIndex].isSelected
+      console.log(this.profiles[tabIndex][exerciseIndex])
       for(let i = 0; this.profiles[tabIndex].length > i; i++) { // percorre o array para ver se tem algum selecionado
         if (this.profiles[tabIndex][i].isSelected) {
           this.isAnyoneSelected = true
@@ -264,14 +250,13 @@ export default {
       return String.fromCharCode(j+1+64)
     },
     newProfile () {
-      for (let i = 0; i < this.baseExercises.length; i++) {
-        this.baseExercises[i].isSelected = false  
-      }
-      this.profiles.push(JSON.parse(JSON.stringify(this.baseExercises)))
+      this.profiles.push(JSON.parse(JSON.stringify(baseExercises)))
       let oldTabIndex = this.tab.split("-")[1]
       let tabIndex = parseInt(oldTabIndex) + 1
       console.log(parseInt(oldTabIndex) + 1)
-      this.tab = `#tab-${parseInt(oldTabIndex) + 1}`
+      setTimeout(() => {
+        this.tab = `tab-${parseInt(oldTabIndex) + 1}`
+      }, 200)
     }
   }
 }
