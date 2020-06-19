@@ -2,7 +2,7 @@
     v-ons-page
       v-ons-toolbar(id='toolbar' modifier='transparent cover-content')
         div.left
-          v-icon(dark style='width: 44px; height: 44px; font-size: 44px;') mdi-chevron-left
+          v-icon(@click='goBack()' dark style='width: 44px; height: 44px; font-size: 44px;') mdi-chevron-left
       div.background
       div.content
         div.table
@@ -12,6 +12,7 @@
                 li.active Sobre você
                 li Contato
                 li Conta
+                li Objetivos
           div.table-item.fill(style='position: relative')
             v-ons-row.background-section(style='height: 100%;')
               v-ons-col(width='100%')
@@ -24,7 +25,7 @@
                       input.text-input.text-input--material(type='text'  v-model='user.name' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Data de Nascimento' modifier='material' float)
+                    ons-input.custom-input(placeholder='Data de Nascimento' type='date' modifier='material' float)
                       input.text-input.text-input--material(type='text'  v-model='user.born' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
@@ -32,11 +33,13 @@
                       input.text-input.text-input--material(type='text'  v-model='user.gender' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-button.font1.custom-button(@click='$router.push("/cadastroAluno2")' style='max-width: 150px; width: 100%; text-align: center; margin-bottom: 25px;')
+                    ons-button.font1.custom-button(@click='nextPage()' style='max-width: 150px; width: 100%; text-align: center; margin-bottom: 25px;')
                       | Próximo
 </template>
 <script>
+import firebase from 'firebase'
   export default {
+    fiery:true,
     data () {
       return {
         cadastroStep: 1,
@@ -52,11 +55,26 @@
           phone: '',
           password: '',
           language: ''
-        }
+        },
+        cadastroAluno: this.$fiery(firebase.firestore().collection('alunos'))
       }
     },
     methods: {
+      nextPage() {
+        var docName=this.user.name+this.user.born
+        this.$store.commit('setDocName', docName)
+        this.$fires.cadastroAluno.doc(docName).set({
+          name: this.user.name,
+          birthday: this.user.born,
+          gender: this.user.gender
+        })
+        this.$router.push("/cadastroAluno2")
+      },
+      goBack () {
+        this.$router.push('/')
+      },
     },
+    
   }
 </script>
 <style scoped>

@@ -14,11 +14,11 @@
               v-ons-col(width='100%')
                 v-row(style='width: 100%' justify='space-around' no-gutters)
                   v-col(cols='12' style='padding: 0 5px 0 10px;')
-                    v-text-field(v-model='login.email' label="E-mail" dark hide-details style='margin-bottom: 15px')
+                    v-text-field(v-model='login.email' label="E-mail" type="email" required dark hide-details style='margin-bottom: 15px')
                       template(v-slot:prepend-inner)
                         v-icon(style='margin: 0 10px;') mdi-at
                   v-col(cols='12' style='padding: 0 5px 0 10px;')
-                    v-text-field(v-model='login.password' label="Senha" type='password' dark hide-details style='margin-bottom: 30px;')
+                    v-text-field(v-model='login.password' label="Senha" type='password' required dark hide-details style='margin-bottom: 30px;')
                       template(v-slot:prepend-inner)
                         v-icon(style='margin: 0 10px;') mdi-lock
                   v-col(cols='12' style='padding: 0 5px 0 10px;')
@@ -65,8 +65,8 @@ export default {
       this.$store.dispatch('signUserFacebook')
     },
     onsignIn () {
-      this.$router.push('/cadastroprofessor')
       this.$store.dispatch('signUserIn',{email:this.login.email,password:this.login.password})
+      // this.$router.push('/homeAluno')
     },
     escolhaFuncao(){
       this.$router.push('/escolhaFuncao')

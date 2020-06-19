@@ -24,19 +24,21 @@
                       input.text-input.text-input--material(type='text'  v-model='user.name' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-input.custom-input(placeholder='Data de Nascimento' modifier='material' float)
-                      input.text-input.text-input--material(type='text'  v-model='user.born' style='height: 40px; font-size: 20px;')
+                    ons-input.custom-input(placeholder='Data de Nascimento' type='date'  modifier='material' float)
+                      input.text-input.text-input--material(v-model='user.born' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
                     ons-input.custom-input(placeholder='Gênero' modifier='material' float)
                       input.text-input.text-input--material(type='text'  v-model='user.gender' style='height: 40px; font-size: 20px;')
                       span.text-input__label.text-input--material__label(style='font-size: 20px; line-height: 20px; top: 7px;')
                   v-col(cols='12')
-                    ons-button.font1.custom-button(@click='$router.push("/cadastroprofessor2")' style='max-width: 150px; width: 100%; text-align: center; margin-bottom: 25px;')
+                    ons-button.font1.custom-button(@click='nextPage()' style='max-width: 150px; width: 100%; text-align: center; margin-bottom: 25px;')
                       | Próximo
 </template>
 <script>
+import firebase from 'firebase'
   export default {
+    fiery: true,
     data () {
       return {
         cadastroStep: 1,
@@ -52,10 +54,21 @@
           phone: '',
           password: '',
           language: ''
-        }
+        },
+        cadastroProfessor: this.$fiery(firebase.firestore().collection('professor')),
       }
     },
     methods: {
+      nextPage() {
+        var docName=this.user.name+this.user.born
+        this.$store.commit('setDocName', docName)
+        this.$fires.cadastroProfessor.doc(docName).set({
+          name: this.user.name,
+          birthday: this.user.born,
+          gender: this.user.gender
+        })
+        this.$router.push("/cadastroprofessor2")
+      }
     },
   }
 </script>

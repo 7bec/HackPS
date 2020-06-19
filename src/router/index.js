@@ -11,10 +11,10 @@ import EscolhaModalidade from '../views/EscolhaModalidade.vue'
 import EscolhaInstrutor from '../views/EscolhaInstrutor.vue'
 import Instrutor from '../views/Instrutor.vue'
 import CadastroProfessor from '../views/CadastroProfessor'
-import CadastroProfessor1 from '../views/CadastroProfessor1'
+import CadastroProfessor4 from '../views/CadastroProfessor4'
 import CadastroProfessor2 from '../views/CadastroProfessor2'
 import CadastroProfessor3 from '../views/CadastroProfessor3'
-import CadastroAluno1 from '../views/CadastroAluno1'
+import CadastroAluno4 from '../views/CadastroAluno4'
 import CadastroAluno2 from '../views/CadastroAluno2'
 import CadastroAluno3 from '../views/CadastroAluno3'
 import EscolhaFuncao from '../views/EscolhaFuncao'
@@ -40,19 +40,19 @@ const routes = [
     meta: { showToolbar: false }
   },
   {
-    path: '/homeAluno',
+    path: '/homealuno',
     name: 'HomeAluno',
     component: HomeAluno,
     meta: { showToolbar: true }
   },
   {
-    path: '/homeProfessor',
+    path: '/homeprofessor',
     name: 'HomeProfessor',
     component: HomeProfessor,
     meta: { showToolbar: true }
   },
   {
-    path: '/professorprofile',
+    path: '/professorprofile/:idInstrutor',
     name: 'ProfessorProfile',
     component: ProfessorProfile,
     meta: { showToolbar: true }
@@ -70,9 +70,9 @@ const routes = [
     meta: { showToolbar: false }
   },
   {
-    path: '/cadastroaluno1',
-    name: 'CadastroAluno1',
-    component: CadastroAluno1,
+    path: '/cadastroaluno4',
+    name: 'CadastroAluno4',
+    component: CadastroAluno4,
     meta: { showToolbar: false }
   },
   {
@@ -94,9 +94,9 @@ const routes = [
     meta: { showToolbar: false }
   },
   {
-    path: '/cadastroProfessor1',
-    name: 'CadastroProfessor1',
-    component: CadastroProfessor1,
+    path: '/cadastroProfessor4',
+    name: 'CadastroProfessor4',
+    component: CadastroProfessor4,
     meta: { showToolbar: false }
   },
   {
@@ -175,8 +175,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  // mode: 'hash',
+  // base: process.env.BASE_URL,
   routes
 })
 

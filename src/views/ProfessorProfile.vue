@@ -10,15 +10,15 @@
             v-row(no-gutters style='justify-content: space-between;')
               v-col(cols='auto' style='background-color: rgba(0,0,0,0.2); border-radius: 10px; height: 34px;')
                 v-icon(dark style='width: 34px; height: 34px; font-size: 34px;') mdi-chevron-left
-              v-col(@click='favorite = !favorite' cols='auto' style='background-color: rgba(0,0,0,0.2); border-radius: 10px; height: 34px; width: 34px; text-align: center; padding-top: 2px;')
-                v-icon(v-if='favorite' small dark style='width: 30px; height: 30px; font-size: 30px;') mdi-heart
+              v-col(cols='auto' style='background-color: rgba(0,0,0,0.2); border-radius: 10px; height: 34px; width: 34px; text-align: center; padding-top: 2px;')
+                v-icon( v-if='favorite' small dark style='width: 30px; height: 30px; font-size: 30px;') mdi-heart
                 v-icon(v-else small dark style='width: 30px; height: 30px; font-size: 30px;') mdi-heart-outline
             v-row(no-gutters style='justify-content: space-around; height: 246px;')
               v-col(cols='auto' style='align-self: center;')
                 v-avatar(size='130' style='box-shadow: rgba(31, 70, 88, 0.1) 0px 3px 10px 10px;')
-                  img(src="https://www.thispersondoesnotexist.com/image")
+                  img(:src="instrutor.picture_url")
                 div(style='margin-top: 8px; font-size: 18px; color: #FFFFFF; font-weight: bold; text-align: center;')
-                  | Luciano Machado &nbsp;
+                  | {{instrutor.name}} &nbsp;
                   svg(style="width:14px;height:14px;" viewBox="0 0 24 24")
                     path(fill="#2196F3" d="M23,12L20.56,9.22L20.9,5.54L17.29,4.72L15.4,1.54L12,3L8.6,1.54L6.71,4.72L3.1,5.53L3.44,9.21L1,12L3.44,14.78L3.1,18.47L6.71,19.29L8.6,22.47L12,21L15.4,22.46L17.29,19.28L20.9,18.46L20.56,14.78L23,12M10,17L6,13L7.41,11.59L10,14.17L16.59,7.58L18,9L10,17Z")
                 div(style='font-size: 14px; color: #FFFFFF; font-weight: lighter; text-align: center; width: 130px;') Recife - PE
@@ -26,7 +26,7 @@
                   v-rating(color='#FFEB3B' background-color='#FFEB3B' half-increments readonly dense v-model='rating.value' small)
                   div(style='text-transform: uppercase; color: white; font-weight: 500; font-size: 10px;') {{rating.quantity}} Avaliações
               v-col(cols='auto' style='align-self: center;')
-                div(style='font-size: 14px; color: #FFFFFF; font-weight: lighter; text-align: center; font-family: rift-soft, sans-serif; font-style: normal; font-weight: 300;') ESPECIALIDADES
+                div(style='font-size: 14px; color: #FFFFFF; font-weight: lighter; text-align: center; font-family: rift-soft, sans-serif; font-style: normal; font-weight: 300;') MODALIDADES
                 div(style='color: white; font-weight: bold; text-align: center; margin-top: 8px;')
                   v-avatar(color="#FFF" size="48" style='-webkit-box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); -moz-box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); border-radius: 50%;')
                     v-icon(color='#f05429') fas fa-futbol
@@ -47,17 +47,17 @@
               v-card(tile color='#fafafa' style='box-shadow: none; filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 0.078)); width: 100%;')
                 div(:class='{ "showLess boxSmall": showLess, "boxGrow": !showLess }' style='padding: 12px;')
                   div(style='font-size: 10px; color: #999999; line-height: 18px;') Especialidades
-                  div(style='font-size: 12px; color: #666666; line-height: 17px;') Emagrecimento, hipertensão, atletismo, futebol.
+                  div(style='font-size: 12px; color: #666666; line-height: 17px;') {{makePhrase(instrutor.especialidades)}}
                   div(style='font-size: 10px; color: #999999; line-height: 18px;') Graduação
-                  div(style='font-size: 12px; color: #666666; line-height: 17px;') Educação Física UFPE.
+                  div(style='font-size: 12px; color: #666666; line-height: 17px;') {{instrutor.graduacao}}
                   div(style='font-size: 10px; color: #999999; line-height: 18px;') Especialização
-                  div(style='font-size: 12px; color: #666666; line-height: 17px;') Em exercícios aplicados à reabilitação cardíaca e grupos especiais UGF-RJ.
+                  div(style='font-size: 12px; color: #666666; line-height: 17px;') {{instrutor.especializacao}}
                   div(style='font-size: 10px; color: #999999; line-height: 18px;') Mestrado
-                  div(style='font-size: 12px; color: #666666; line-height: 17px;') Educação Física na UPE/UFPB
+                  div(style='font-size: 12px; color: #666666; line-height: 17px;') {{instrutor.mestrado}}
                   div(style='font-size: 10px; color: #999999; line-height: 18px;') Doutorado
-                  div(style='font-size: 12px; color: #666666; line-height: 17px;') Medicina-CCS na área de Neuropsiquiatria e Ciências do Comportamento UFPE.
+                  div(style='font-size: 12px; color: #666666; line-height: 17px;') {{instrutor.mestrado}}
                   div(style='font-size: 10px; color: #999999; line-height: 18px;') Experiência na área
-                  div(style='font-size: 12px; color: #666666; line-height: 17px;') 12 anos <br>Professor Adjunto da UFPE-CAV. <br> Dez anos de gestão (5 anos como coordenador esportivo no SESC e 5 anos como coordenador da Academia Escola do Centro Universitário Tabosa de Almeida (Asces-Unita)). <br>CURSOS: FMS, Hipertrofia, MVF etc.
+                  div(style='font-size: 12px; color: #666666; line-height: 17px;') {{instrutor.tempo_experiencia}} <br>{{instrutor.ocupacao_atual}} <br> {{instrutor.historico_experiencia}}
         v-ons-row(width='100%' style='padding: 16px 12px 8px 12px;')
           template(v-if="percentageProgress.time > 50")
             v-row(no-gutters style='padding: 0; width: 100%;')
@@ -170,6 +170,9 @@ import firebase from 'firebase'
 export default {
   fiery: true,
   name: 'Home',
+  props: [
+    'instrutor'
+  ],
   computed: {
     isDone () {
       if (this.done === this.total) {
@@ -185,6 +188,7 @@ export default {
   data () {
     return {
       model: [],
+      instrutor: {},
       favorite: false,
       rating: {
         quantity: 7,
@@ -239,19 +243,32 @@ export default {
     }
   },
   created () {
-    // const that = this
-    // this.$fiery(firebase.firestore().collection('instrutores'), {
-    //     query: q => q.where('musculacao', '==', true),
-    //     onSuccess: (todos) => {
-    //         console.log(todos)
-    //         that.instrutores = todos
-    //     }
-    // })
+
+    const idInstrutor = this.$route.params.idInstrutor
+    console.log(idInstrutor)
+    this.instrutor = this.$fiery(firebase.firestore().collection('instrutores').doc(idInstrutor))
+    console.log(this.instrutor)
+
     for (let i = 0; this.treinos.length > i; i++) {
       if (this.treinos[i].done === 100) {
         this.done++
       }
       this.total++
+    }
+  },
+  methods: {
+    makePhrase (especialidades) {
+      let frase = ''
+      let i = 0
+      especialidades.forEach((especialidade)=>{
+        if (i != especialidades.length){
+          frase += especialidade + ',' + ' '
+        } else {
+          frase += 'e' + ' ' +especialidade
+        }
+        i++;
+      })
+      return frase
     }
   }
 }

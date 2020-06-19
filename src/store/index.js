@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase'
+import router from '../router'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -9,10 +10,15 @@ export default new Vuex.Store({
     loading: false,
     error: null,
     isWithEmail: false,
+    docName:null
   },
   mutations: {
     setUser(state,payload){
       state.user=payload
+    },
+    setDocName(state,payload){
+      state.docName=payload
+      console.log(state.docName)
     },
     setLoading(state, payload) {
       state.loading = payload
@@ -33,6 +39,9 @@ export default new Vuex.Store({
     },
     loading(state){
       return state.loading
+    },
+    doc(state){
+      return state.docName
     }
   },
   actions: {
@@ -56,6 +65,7 @@ export default new Vuex.Store({
           })
           .then(function() {
             console.log("Document successfully written!");
+
           })
           .catch(function(error) {
             console.error("Error writing document: ", error);
@@ -93,6 +103,7 @@ export default new Vuex.Store({
           })
           .then(function() {
             console.log("Document successfully written!");
+            // router.push('/homeAluno')
           })
           .catch(function(error) {
             console.error("Error writing document: ", error);
@@ -126,6 +137,7 @@ export default new Vuex.Store({
       commit('setLoading', true)
       commit('clearError')
       firebase.auth().signInWithRedirect(googleProvider)
+      router.push('/homeAluno')
     },
     
     signUserFacebook({commit}){
@@ -133,6 +145,7 @@ export default new Vuex.Store({
       commit('setLoading', true)
       commit('clearError')
       firebase.auth().signInWithRedirect(facebookProvider)
+      router.push('/homeAluno')
       
     }
   }
