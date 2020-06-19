@@ -22,6 +22,7 @@ import RedefinirSenha from '../views/RedefinirSenha'
 import Planos from '../views/Planos'
 import Training from '../views/training/Training'
 import CreateTraining from '../views/training/CreateTraining'
+import EditExercises from '../views/training/EditExercises'
 import AddExercise from '../views/training/AddExercise'
 Vue.use(VueRouter)
 
@@ -165,6 +166,12 @@ const routes = [
     component: AddExercise,
     meta: { showToolbar: false }
   },
+  {
+    path: '/editExercises',
+    name: 'EditExercises',
+    component: EditExercises,
+    meta: { showToolbar: false }
+  }
 ]
 
 const router = new VueRouter({
