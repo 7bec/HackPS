@@ -52,6 +52,9 @@ export default new Vuex.Store({
     doc(state){
       return state.docName
     },
+    isWithEmail(state){
+      return state.isWithEmail
+    },
     authenticated(state){
       return state.user !== null && state.user !== undefined
     }
@@ -111,7 +114,7 @@ export default new Vuex.Store({
           commit('setLoading', false)
           commit('isWithEmail', true)
           
-          firebase.firestore().collection("usuarios").doc(newUser.id).update({
+          firebase.firestore().collection("usuarios").doc(newUser.id).set({
             name: newUser.name
           })
           .then(function() {
@@ -119,7 +122,7 @@ export default new Vuex.Store({
             
 
             console.log("Document successfully written!");
-            router.push('/homeAluno')
+            // router.push('/homeAluno')
           })
           .catch(function(error) {
             console.error("Error writing document: ", error);
@@ -156,7 +159,7 @@ export default new Vuex.Store({
       commit('clearError')
       firebase.auth().signInWithRedirect(googleProvider)
       commit('isAuthenticated',true)
-      console.log(this.state.authenticated)
+      commit('isWithEmail',false)
 
     },
     

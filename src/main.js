@@ -51,6 +51,7 @@ new Vue({
           email: firebase.auth().currentUser.email
         }
         store.commit('setUser', newUser)
+        
         firebase.firestore().collection('usuarios').where('email', '==', firebase.auth().currentUser.email).get()
           .then(function(querySnapshot) {
             var funcao = null
@@ -60,14 +61,15 @@ new Vue({
                
               })
             }
-            console.log(funcao)
+            console.log('funcao'+funcao)
+            if(funcao=='professor'){
+              router.push('/homeProfessor')
+            }
+            else{
+              router.push('/homeAluno')
+            }
           })
-        // if(firebaseUser.function=='professor'){
-        //   router.push('/homeProfessor')
-        // }
-        // else{
-        //   router.push('/homeAluno')
-        // }
+        
       } else {
         // No user is signed in.
         console.log('Não tem conta')

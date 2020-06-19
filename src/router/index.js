@@ -239,7 +239,7 @@ router.beforeEach((to, from, next) => {
     next()
   } else if ((to.path === '/' || to.path === '/login' || to.path === '/begin'  )&& store.getters.authenticated) {
     console.log('here: ' + from.name)
-    next('/homeAluno')
+   
   } else {
     console.log('dawd')
     next()
