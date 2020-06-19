@@ -28,6 +28,7 @@
     "fiery-vue": "^0.10.2",
     "firebase": "^7.14.1",
     "grpc": "^1.24.2",
+    "jquery": "^3.5.1",
     "node-pre-gyp": "0.12.0",
     "onsenui": "^2.10.10",
     "pug-plain-loader": "^1.0.0",

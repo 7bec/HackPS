@@ -20,8 +20,9 @@ import CadastroAluno3 from '../views/CadastroAluno3'
 import EscolhaFuncao from '../views/EscolhaFuncao'
 import RedefinirSenha from '../views/RedefinirSenha'
 import Planos from '../views/Planos'
-import Training from '../views/Training'
-import CreateTraining from '../views/CreateTraining'
+import Training from '../views/training/Training'
+import CreateTraining from '../views/training/CreateTraining'
+import AddExercise from '../views/training/AddExercise'
 Vue.use(VueRouter)
 
 const routes = [
@@ -156,6 +157,12 @@ const routes = [
     path: '/createTraining',
     name: 'CreateTraining',
     component: CreateTraining,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/addExercise',
+    name: 'AddExercise',
+    component: AddExercise,
     meta: { showToolbar: false }
   },
 ]

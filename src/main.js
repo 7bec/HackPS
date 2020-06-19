@@ -11,6 +11,8 @@ import vuetify from './plugins/vuetify';
 import FieryVue from 'fiery-vue'
 import StarRating from 'vue-star-rating'
 import VueMask from 'v-mask'
+import jQuery from 'jquery'
+global.jQuery = jQuery
 
 Vue.use(VueMask);
 Vue.use(VueOnsen); // VueOnsen set here as plugin to VUE. Done automatically if a call to window.Vue exists in the startup code.
