@@ -28,7 +28,7 @@
       v-ons-row.padding16(width='100%' style='padding: 24px 16px 8px 16px;')
         v-row.font3(no-gutters style='padding: 0; width: 100%;')
           v-col Exercícios ({{profiles[0].length}})
-          v-col(@click='$router.push("/addExercise")' cols='auto' style='font-weight: 500; font-size: 14px;')
+          v-col(@click='$router.push("/editExercises")' cols='auto' style='font-weight: 500; font-size: 14px;')
             span Adicionar novo
             span
               v-icon(small color='rgb(202, 33, 33)') mdi-plus
@@ -234,10 +234,10 @@ export default {
   },
   methods: {
     toggleSelectItem (tabIndex, exerciseIndex) {
-      console.log(tabIndex)
-      console.log(exerciseIndex)
       this.profiles[tabIndex][exerciseIndex].isSelected = !this.profiles[tabIndex][exerciseIndex].isSelected
-      console.log(this.profiles[tabIndex][exerciseIndex])
+      let aux = this.tab
+      this.tab = ''
+      this.tab = aux
       for(let i = 0; this.profiles[tabIndex].length > i; i++) { // percorre o array para ver se tem algum selecionado
         if (this.profiles[tabIndex][i].isSelected) {
           this.isAnyoneSelected = true
