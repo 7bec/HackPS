@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:239385140693:android:3a64783f7d954fdafc315c",
+        "mobilesdk_app_id": "1:239385140693:android:6770c6a438359eb3fc315c",
         "android_client_info": {
-          "package_name": "com.pep.android"
+          "package_name": "com.pep.app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "239385140693-lajdnv3b7k193bkloo8lma57unqaesn3.apps.googleusercontent.com",
+          "client_id": "239385140693-veipev37tt0krtahfa7rig8ls9e2q0k2.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.pep.android",
+            "package_name": "com.pep.app",
             "certificate_hash": "3d5e02627c4db0c3634555f369a6721e40644c2b"
           }
         },

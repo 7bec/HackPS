@@ -66,7 +66,8 @@ import firebase from 'firebase'
         this.$fires.cadastroAluno.doc(docName).set({
           name: this.user.name,
           birthday: this.user.born,
-          gender: this.user.gender
+          gender: this.user.gender,
+          function:'aluno'
         })
         this.$router.push("/cadastroAluno2")
       },

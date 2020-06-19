@@ -22,18 +22,18 @@
                     div.font3(style='margin-bottom: 20px;') Preencha os campos abaixo para nos conhecermos melhor
                   v-row.row(cols='12' v-for="(especialidade,i) in especialidades" :key="i")
                     v-col.column
-                      v-ons-card.card1(@click='changeColor()' v-if="isActive==true" class="corCinza")
-                        p(style='font-size:15px;') {{especialidade}}
-                      v-ons-card.card1(@click='changeColor()' v-else class="corLaranja")
-                        p(style='font-size:15px;') {{especialidade}}
+                      v-ons-card.card1(@click='changeColor()' v-bind:class="{corCinza: !isActive,corLaranja:isActive }")
+                        p(style='font-size:15px;') {{especialidade.name}}
                  
               v-col(cols='12')
                 ons-button.font1.custom-button(@click='nextPage()' style='max-width: 150px; width: 100%; text-align: center; float: right; margin-bottom: 25px;')
                   | Próximo
+              
 </template>
 <script>
 import firebase from 'firebase'
   export default {
+    name: 'cadastroProf3',
     fiery:true,
     data () {
       return {
@@ -43,9 +43,8 @@ import firebase from 'firebase'
           {text: 'Outros'}
         ],
         cadastroStep: 1,
-        
-        especialidades: ['Funcional','Crossfit','Emagrecimento','3ª Idade','Treino funcional','Musculação','Hipertrofia',
-                        'Treino em casa', 'HIIT', 'Yoga','MMT','LPO','Força','Corrida','Condicionamento físico','Definição muscular','Calistenia','Funcional Fight','Artes maciais','Luta'],
+        color:'black',
+        especialidades: this.$fiery(firebase.firestore().collection('especialidades')),
         isActive:true,
         cadastroProfessor: this.$fiery(firebase.firestore().collection('professor')),
       }
@@ -58,6 +57,12 @@ import firebase from 'firebase'
         this.isActive ^= true
       },
     },
+    computed: {
+     authenticated(){
+          console.log('Home'+this.$store.getters.user)
+          return this.$store.getters.user
+      }  
+    }
   }
 </script>
 <style scoped>

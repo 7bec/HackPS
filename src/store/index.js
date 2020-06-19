@@ -1,6 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import firebase from 'firebase'
+import VuexPersistence from 'vuex-persist'
+const vuexLocal = new VuexPersistence({
+  storage: window.localStorage
+})
 import router from '../router'
 Vue.use(Vuex)
 
@@ -10,7 +14,8 @@ export default new Vuex.Store({
     loading: false,
     error: null,
     isWithEmail: false,
-    docName:null
+    docName:null,
+    authenticated:false
   },
   mutations: {
     setUser(state,payload){
@@ -31,6 +36,10 @@ export default new Vuex.Store({
     },
     isWithEmail(state,payload){
       state.isWithEmail = payload
+    },
+    isAuthenticated(state,payload){
+      state.authenticated= payload
+      console.log(this.state.authenticated)
     }
   },
   getters:{
@@ -42,6 +51,9 @@ export default new Vuex.Store({
     },
     doc(state){
       return state.docName
+    },
+    authenticated(state){
+      return state.user !== null && state.user !== undefined
     }
   },
   actions: {
@@ -60,11 +72,12 @@ export default new Vuex.Store({
           }
           firebase.firestore().collection("usuarios").doc(newUser.id).set({
             name: newUser.name,
-            isEmployee: false
+            function:newUser.function
           
           })
           .then(function() {
             console.log("Document successfully written!");
+
 
           })
           .catch(function(error) {
@@ -72,7 +85,7 @@ export default new Vuex.Store({
           });
           
           commit('setUser', newUser )
-
+          commit('isAuthenticated',true)
         } 
       )
       .catch(
@@ -102,8 +115,11 @@ export default new Vuex.Store({
             name: newUser.name
           })
           .then(function() {
+            commit('isAuthenticated',true)
+            
+
             console.log("Document successfully written!");
-            // router.push('/homeAluno')
+            router.push('/homeAluno')
           })
           .catch(function(error) {
             console.error("Error writing document: ", error);
@@ -124,9 +140,11 @@ export default new Vuex.Store({
       
     },
      signUserOut({commit}){
+      commit('setUser',null)
       commit('setLoading', false)
       commit('clearError')
       firebase.auth().signOut()
+      router.push('/login')
     },
     clearError({commit}){
       commit('clearError')
@@ -137,7 +155,9 @@ export default new Vuex.Store({
       commit('setLoading', true)
       commit('clearError')
       firebase.auth().signInWithRedirect(googleProvider)
-      router.push('/homeAluno')
+      commit('isAuthenticated',true)
+      console.log(this.state.authenticated)
+
     },
     
     signUserFacebook({commit}){
@@ -145,7 +165,7 @@ export default new Vuex.Store({
       commit('setLoading', true)
       commit('clearError')
       firebase.auth().signInWithRedirect(facebookProvider)
-      router.push('/homeAluno')
+      commit('isAuthenticated',true)
       
     }
   }

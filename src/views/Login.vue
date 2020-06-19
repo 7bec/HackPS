@@ -74,6 +74,12 @@ export default {
     forgotPassword(){
       this.$router.push('/redefinirSenha')
     }
+  },
+  computed: {
+    logged(){
+        console.log('Home'+this.$store.getters.logged)
+        return this.$store.getters.logged
+    }  
   }
 }
 </script>

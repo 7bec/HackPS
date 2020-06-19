@@ -58,12 +58,17 @@ import firebase from 'firebase'
           confirmPassword:'',
           language: ''
         },
-        cadastroAluno: this.$fiery(firebase.firestore().collection('alunos'))
+        cadastroAluno: this.$fiery(firebase.firestore().collection('alunos')),
+        usuario: this.$fiery(firebase.firestore().collection('usuarios')),
 
       }
     },
     methods: {
       onsignUp(){
+        this.$fires.usuario.doc(this.user.email).set({
+          function:'aluno',
+          email:this.user.email
+        })
         this.$store.dispatch('signUserUp', {email: this.user.email, password: this.user.password})
         this.$router.push("/homeAluno")
       },

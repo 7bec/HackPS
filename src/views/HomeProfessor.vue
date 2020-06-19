@@ -16,7 +16,7 @@
       v-ons-row(width='100%' style='padding: 32px 0 8px 0;')
         v-row.font3(no-gutters style='padding: 0; width: 100%;')
           v-col Serviços
-          v-col(cols='auto' style='font-weight: 500; font-size: 14px;') Ver mais
+          v-col(cols='auto'  @click='signUserOut()' style='font-weight: 500; font-size: 14px;') Ver mais
         v-row.font4(no-gutters style='padding: 4px 0 0 0;') Escolha um dos mais diversos serviços
       v-ons-row(width='100%' style='padding: 0 0 16px 0')
         v-row(style='padding: 0; width: 100%;')
@@ -70,7 +70,7 @@
       v-ons-row(width='100%' style='padding: 16px 0 8px 0;')
         v-row.font3(no-gutters style='padding: 0; width: 100%;')
           v-col Seus alunos
-          v-col(cols='auto' style='font-weight: 500; font-size: 14px;') Ver mais
+          v-col( cols='auto' style='font-weight: 500; font-size: 14px;') Ver mais
         v-row.font4(no-gutters style='padding: 4px 0 0 0;') Veja quem precisa de atenção
          v-ons-row(width='100%')
         v-row(no-gutters style='max-width: calc(100% + 10px); position: relative;')
@@ -131,6 +131,11 @@ export default {
             that.alunos = todos
         }
     })
+  },
+  methods:{
+    signUserOut(){
+      this.$store.dispatch('signUserOut')
+    }
   }
 }
 </script>

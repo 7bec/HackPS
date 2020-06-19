@@ -55,13 +55,19 @@ import firebase from 'firebase'
           phone: '',
           password: '',
           confirmPassword:'',
-          language: ''
+          language: '',
+          function:'professor'
         },
         cadastroProfessor: this.$fiery(firebase.firestore().collection('professor')),
+        usuario: this.$fiery(firebase.firestore().collection('usuarios')),
       }
     },
     methods: {
        onsignUp(){
+        this.$fires.usuario.doc(this.user.email).set({
+          function:'professor',
+          email:this.user.email
+        })
         this.$store.dispatch('signUserUp', {email: this.user.email, password: this.user.password})
         this.$router.push("/homeProfessor")
       },

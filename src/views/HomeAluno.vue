@@ -216,7 +216,13 @@ export default {
       }
       this.total++
     }
-  }
+  },
+    computed: {
+     authenticated(){
+          console.log('Home'+this.$store.getters.user)
+          return this.$store.getters.user
+      }  
+    }
 }
 </script>
 

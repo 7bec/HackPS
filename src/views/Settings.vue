@@ -54,7 +54,7 @@ v-ons-page
       v-ons-list-item(modifier="chevron" tappable) Ajuda e Suporte
     v-ons-list-item(tappable style='margin-bottom: 28px; background: white; text-align: center;')
       .center
-        .list-item__title Sair
+        .list-item__title(@click='signUserOut()') Sair
 </template>
 
 <script>
@@ -62,6 +62,11 @@ export default {
   name: 'Settings',
   data () {
     return {
+    }
+  },
+  methods:{
+    signUserOut(){
+      this.$store.dispatch('signUserOut')
     }
   }
 }

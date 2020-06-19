@@ -24,7 +24,6 @@ new Vue({
   store,
   render: h => h(App),
   vuetify,
-
   created(){
     firebase.initializeApp({
       apiKey: "AIzaSyCQrSV7RD_Qc7iQ7AjACGD_6ex0ER8mMck",
@@ -37,24 +36,43 @@ new Vue({
       measurementId: "G-YEBDKB814T"
 
     })
-    // firebase.auth().onAuthStateChanged(function(user) {
-    //   var user = firebase.auth().currentUser;
-    //   if (user) {
-    //     const newUser = {
-    //       id: firebase.auth().currentUser.uid,
-    //       photoUrl: firebase.auth().currentUser.photoURL,
-    //       name: firebase.auth().currentUser.displayName,
-    //       email: firebase.auth().currentUser.email
-    //     }
-    //     store.commit('setUser', newUser)
-    //     router.push('/home')
-    //   } else {
-    //     // No user is signed in.
-    //     console.log('Não tem conta')
-    //     router.push('/')
+    
 
-    //   }
+    firebase.auth().onAuthStateChanged(function(user) {
 
-    // })
+      console.log(firebase.auth().currentUser.email)
+      if (user) {
+        const newUser = {
+          id: firebase.auth().currentUser.uid,
+          photoUrl: firebase.auth().currentUser.photoURL,
+          name: firebase.auth().currentUser.displayName,
+          email: firebase.auth().currentUser.email
+        }
+        store.commit('setUser', newUser)
+        firebase.firestore().collection('usuarios').where('email', '==', firebase.auth().currentUser.email).get()
+          .then(function(querySnapshot) {
+            var funcao = null
+            if (querySnapshot.empty == false) {
+              querySnapshot.forEach(function(doc){
+                funcao = doc.data().function
+               
+              })
+            }
+            console.log(funcao)
+          })
+        // if(firebaseUser.function=='professor'){
+        //   router.push('/homeProfessor')
+        // }
+        // else{
+        //   router.push('/homeAluno')
+        // }
+      } else {
+        // No user is signed in.
+        console.log('Não tem conta')
+        router.push('/')
+
+      }
+
+    })
   }
 }).$mount('#app')
