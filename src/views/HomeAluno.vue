@@ -84,11 +84,11 @@
                 div(style='font-size: 18px; font-weight: 900; width: 100%;') {{ this.done + '/' + this.total }}
           v-col(cols='6' style='text-align: center; align-self: center')
             div
-              div(style='font-size: 18px; font-weight: 500; color: #f05429') <b>2596</b> kcal
-              div(style='font-size: 13px; font-weight: 700; color: rgb(23, 43, 62); line-height: 20px;') Total da semana
+              div(style='font-size: 18px; font-weight: 500; color: #f05429') <b>2,5</b> exercícios
+              div(style='font-size: 13px; font-weight: 700; color: rgb(23, 43, 62); line-height: 20px;') Média da semana
             div(style='margin-top: 8px;')
-              div(style='font-size: 18px; font-weight: 500; color: #f05429') <b>403</b> kcal
-              div(style='font-size: 13px; font-weight: 700; color: rgb(23, 43, 62); line-height: 20px;') Média por treino
+              div(style='font-size: 18px; font-weight: 500; color: #f05429') Mais que  <b>55%</b>
+              div(style='font-size: 13px; font-weight: 700; color: rgb(23, 43, 62); line-height: 20px;') dos Alunos
       v-divider
       v-ons-row(width='100%' style='padding: 16px 0 8px 0;')
         v-row.font3(no-gutters style='padding: 0; width: 100%;')

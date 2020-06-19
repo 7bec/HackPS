@@ -20,9 +20,12 @@ import CadastroAluno3 from '../views/CadastroAluno3'
 import EscolhaFuncao from '../views/EscolhaFuncao'
 import RedefinirSenha from '../views/RedefinirSenha'
 import Planos from '../views/Planos'
-import Training from '../views/Training'
-import CreateTraining from '../views/CreateTraining'
+import Training from '../views/training/Training'
+import CreateTraining from '../views/training/CreateTraining'
+import EditExercises from '../views/training/EditExercises'
+import AddExercise from '../views/training/AddExercise'
 import store from '../store/index.js'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -45,7 +48,7 @@ const routes = [
     }
   },
   {
-    path: '/homeAluno',
+    path: '/homealuno',
     name: 'HomeAluno',
     component: HomeAluno,
     meta: { showToolbar: true,
@@ -53,7 +56,7 @@ const routes = [
     }
   },
   {
-    path: '/homeProfessor',
+    path: '/homeprofessor',
     name: 'HomeProfessor',
     component: HomeProfessor,
     meta: { showToolbar: true,
@@ -61,7 +64,7 @@ const routes = [
     }
   },
   {
-    path: '/professorprofile',
+    path: '/professorprofile/:idInstrutor',
     name: 'ProfessorProfile',
     component: ProfessorProfile,
     meta: { showToolbar: true,
@@ -205,6 +208,18 @@ const routes = [
       requiresAuth: true
     }
   },
+  {
+    path: '/addExercise',
+    name: 'AddExercise',
+    component: AddExercise,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/editExercises',
+    name: 'EditExercises',
+    component: EditExercises,
+    meta: { showToolbar: false }
+  }
 ]
 
 const router = new VueRouter({
