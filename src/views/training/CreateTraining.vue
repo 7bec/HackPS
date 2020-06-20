@@ -13,7 +13,7 @@
       v-divider.padding16(style='margin-top: 16px')
       v-ons-row.padding16(width='100%' style='padding-top: 16px;')
         v-row.font3(no-gutters style='padding: 0; width: 100%;')
-          v-col(cols='auto' style='margin-bottom: 16px;')  Nome do Treino
+          v-col(cols='auto' style='margin-bottom: 16px;') Nome do Treino
           v-col(cols='12')
             ons-input.custom-input(placeholder='Escolha o nome do seu treino' style='width: 100%' modifier='material')
               input.text-input.text-input--material(v-model='training.name' type='text')

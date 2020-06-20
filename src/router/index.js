@@ -23,6 +23,7 @@ import Planos from '../views/Planos'
 import Training from '../views/training/Training'
 import CreateTraining from '../views/training/CreateTraining'
 import EditExercises from '../views/training/EditExercises'
+import EditExercisesForm from '../views/training/EditExercisesForm'
 import AddExercise from '../views/training/AddExercise'
 import store from '../store/index.js'
 
@@ -218,6 +219,12 @@ const routes = [
     path: '/editExercises',
     name: 'EditExercises',
     component: EditExercises,
+    meta: { showToolbar: false }
+  },
+  {
+    path: '/editExercisesForm',
+    name: 'EditExercisesForm',
+    component: EditExercisesForm,
     meta: { showToolbar: false }
   }
 ]

@@ -26,18 +26,18 @@
                   v-row(no-gutters style='width: 100%; margin-bottom: 4px;')
                     v-col(v-for='(exercise, j) in profile.exercises' :key='j' cols='6' style='padding: 2px 4px;')
                       v-card.boxDone(outlined style='height: 100%; overflow: hidden; position: relative; border-radius: 10px; filter: drop-shadow(0px 10px 5px rgba(27, 28, 32, 0.102));')
-                        v-img(@click='selectItem(i, j)' height='150' :src='exercise.image' :style="exercise.isSelected ? { filter: 'sepia(100%) brightness(100%) grayscale(60%) hue-rotate(90deg) saturate(300%)' } : {}" style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
-                        v-container(@click='selectItem(i, j)' style='padding-top: 16px; padding-bottom: 8px; width: 100%; background: white;')
+                        v-img(@click='selectItem(i, j, true)' height='150' :src='exercise.image' :style="exercise.isSelected ? { filter: 'sepia(100%) brightness(100%) grayscale(60%) hue-rotate(90deg) saturate(300%)' } : {}" style='border-bottom-left-radius: 0px; border-bottom-right-radius: 0px')
+                        v-container(@click='selectItem(i, j, true)' style='padding-top: 16px; padding-bottom: 8px; width: 100%; background: white;')
                           v-layout(column)
                             v-flex(xs12)
                               h5(style='margin: 0; font-weight: 700; font-size: 14.5px; line-height: 14.5px; letter-spacing: -0.83px; color: #334856;') {{exercise.name}}
                         div(style='background-color: white; height: 38px; width: 38px; position: absolute; top: 126px; left: 50%; transform: translate(-50%, 0); -webkit-box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); -moz-box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); box-shadow: 0px 10px 15px 0px rgba(27,27,32,0.102); border-radius: 50%;')
                           div(style='height: 100%; width: 100%; position: relative; padding: 3px;')
                             label.checkbox.checkbox--material(style='background-color: none; overflow: visible; height: 100%; width: 100%;')
-                              input.checkbox__input.checkbox--material__input(v-model='exercise.isSelected' v-on:change="selectItem(i, j)" type='checkbox')
+                              input.checkbox__input.checkbox--material__input(v-model='exercise.isSelected' v-on:change="selectItem(i, j, false)" type='checkbox')
                               .checkbox__checkmark.checkbox--material__checkmark
                         v-ons-ripple(color='rgba(204, 204, 204, 0.2)')
-    v-ons-fab(v-if='isAnyoneSelected' position="bottom right" style='margin-bottom: 35px;')
+    v-ons-fab(@click='editExercises()' v-if='isAnyoneSelected' position="bottom right" style='background-color: #303F9F; margin-bottom: 35px;')
       v-icon(color='#fff' style='margin-bottom: 4px;') mdi-pencil
     div.tabbar
       v-bottom-navigation(:value='activeBtn' grow color='#f05429')
@@ -54,71 +54,61 @@
 
 <script>
 const polichinelo = {
-  name: 'Perfil A',
-  session: 'Aquecimento',
+  name: 'Polichinelo',
   image: 'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/7_minute_workout_slideshow/01_-jumping_jacks.jpg',
   route: '/polichinelo',
   isSelected: false
 },
 corridaParada = {
-  name: 'Perfil A',
-  session: 'Aquecimento',
+  name: 'Corrida parada',
   image: 'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/7_minute_workout_slideshow/09_high_knees_lower_body.jpg',
   route: '/corrida-parada',
   isSelected: false
 },
 alongTorax = {
-  name: 'Perfil B',
-  session: 'Aquecimento',
+  name: 'Alongamento Tórax',
   image: 'https://1.bp.blogspot.com/-0B9qDWCizrY/UJZjQb7SuRI/AAAAAAAAIvI/kQbfSw2xtvU/s1600/Alongamento.jpeg',
   route: '/alongamento-torax',
   isSelected: false
 }
 const flexaoBraco = {
-  name: 'Perfil A',
-  session: 'Parte Superior',
+  name: 'Flexão de Braço',
   image: 'https://mhmcdn.ynvolve.net/?w=750&h=450&quality=90&clipping=landscape&url=//manualdohomemmoderno.com.br/files/2015/11/flexao-exercicios-para-fazer-em-casa-2.jpg&format=webp&hash=ee7bc3379602eaaf7a39993f6ea4af791fa5da97dbc83713d980bf9670e1cc28',
   route: '/flexao-braco',
   isSelected: false
 },
 flexaoRotacao = {
-  name: 'Perfil B',
-  session: 'Parte Superior',
+  name: 'Flexão com rotação',
   image: 'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/7_minute_workout_slideshow/11_pushup_and_rotation.jpg',
   route: '/flexao-rotacao',
   isSelected: false
 },
 abdominal = {
-  name: 'Perfil C',
-  session: 'Parte Superior',
+  name: 'Abdominal',
   image: 'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/7_minute_workout_slideshow/04_abdominal_crunch_core.jpg',
   route: '/abdominal',
   isSelected: false
 }
 const agachamentoParede = {
-  name: 'Perfil C',
-  session: 'Parte Inferior',
+  name: 'Agachamento na Parede',
   image: 'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/7_minute_workout_slideshow/02_wall_sit_lower_body.jpg',
   route: '/agachamento-parede',
   isSelected: false
 },
 squat = {
   name: 'Squat',
-  session: 'Parte Inferior',
   image: 'https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/articles/health_tools/7_minute_workout_slideshow/06_squat_lower_body.jpg',
   route: '/squat',
   isSelected: false
 },
 agachamentoUnilateral = {
   name: 'Agachamento Unilateral',
-  session: 'Parte Inferior',
   image: 'https://files.incrivel.club/files/news/part_28/283360/9320810-489610-20-0-1500447708-1500447716-650-1-1500447716-650-cdbb8359d9-1590647493.jpg',
   route: '/agachamento-unilateral',
   isSelected: false
 }
 const esteira = {
   name: 'Esteira',
-  session: 'Aeróbico',
   image: 'https://images-americanas.b2w.io/produtos/01/00/img/1584690/3/1584690340_1GG.jpg',
   route: '/esteira',
   isSelected: false
@@ -210,19 +200,24 @@ export default {
     this.training.profiles[2] = { exercises: exercises2 }
   },
   methods: {
-    selectItem (profileIndex, exerciseIndex) {
+    selectItem (profileIndex, exerciseIndex, model) {
       console.log(profileIndex, exerciseIndex)
-      this.training.profiles[profileIndex].exercises[exerciseIndex].isSelected = !this.training.profiles[profileIndex].exercises[exerciseIndex].isSelected
-      console.log(this.training.profiles[profileIndex].exercises[exerciseIndex].isSelected)
-      let aux = this.tab
-      this.tab = ''
-      this.tab = aux
+      if (model) {
+        this.training.profiles[profileIndex].exercises[exerciseIndex].isSelected = !this.training.profiles[profileIndex].exercises[exerciseIndex].isSelected
+        console.log(this.training.profiles[profileIndex].exercises[exerciseIndex].isSelected)
+        let aux = this.tab
+        this.tab = ''
+        this.tab = aux
+      }
       for(let j = 0; this.training.profiles.length > j; j++) {
         for (let i = 0; i < this.training.profiles[j].exercises.length; i++) {
-          this.isAnyoneSelected = true
-          return
+          if (this.training.profiles[j].exercises[i].isSelected) {
+            this.isAnyoneSelected = true
+            return
+          }
         }
       }
+      console.log('não tem')
       this.isAnyoneSelected = false
     },
     toggleSelectItem (tabIndex, exerciseIndex) {
@@ -241,6 +236,17 @@ export default {
     returnLetter (j) {
       return String.fromCharCode(j+1+64)
     },
+    editExercises () {
+      for(let j = 0; this.training.profiles.length > j; j++) {
+        for (let i = 0; i < this.training.profiles[j].exercises.length; i++) {
+          if (this.training.profiles[j].exercises[i].isSelected) { // deveríamos ter um jeito de pegar o id do exercício selecionado!!! (firebase)
+            this.objectsSelected.push(this.training.profiles[j].exercises[i])
+          }
+        }
+      }
+      console.log(this.objectsSelected) // OBJETO A MANDAR PARA OUTRA TELA DE EDIÇÃO
+      this.$router.push("/editExercisesForm")
+    }
   }
 }
 </script>
