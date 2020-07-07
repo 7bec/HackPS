@@ -28,54 +28,14 @@ new Vue({
   vuetify,
   created(){
     firebase.initializeApp({
-      apiKey: "AIzaSyCQrSV7RD_Qc7iQ7AjACGD_6ex0ER8mMck",
-      authDomain: "pepfit-bcbf5.firebaseapp.com",
-      databaseURL: "https://pepfit-bcbf5.firebaseio.com",
-      projectId: "pepfit-bcbf5",
-      storageBucket: "pepfit-bcbf5.appspot.com",
-      messagingSenderId: "239385140693",
-      appId: "1:239385140693:web:fbf512b7884c7665fc315c",
-      measurementId: "G-YEBDKB814T"
-
-    })
-    
-
-    firebase.auth().onAuthStateChanged(function(user) {
-
-      console.log(firebase.auth().currentUser.email)
-      if (user) {
-        const newUser = {
-          id: firebase.auth().currentUser.uid,
-          photoUrl: firebase.auth().currentUser.photoURL,
-          name: firebase.auth().currentUser.displayName,
-          email: firebase.auth().currentUser.email
-        }
-        store.commit('setUser', newUser)
-        
-        firebase.firestore().collection('usuarios').where('email', '==', firebase.auth().currentUser.email).get()
-          .then(function(querySnapshot) {
-            var funcao = null
-            if (querySnapshot.empty == false) {
-              querySnapshot.forEach(function(doc){
-                funcao = doc.data().function
-               
-              })
-            }
-            console.log('funcao'+funcao)
-            if(funcao=='professor'){
-              router.push('/homeProfessor')
-            }
-            else{
-              router.push('/homeAluno')
-            }
-          })
-        
-      } else {
-        // No user is signed in.
-        console.log('Não tem conta')
-        router.push('/')
-
-      }
+      apiKey: "AIzaSyBq5yzaM046cy7YM7f_BiOsktmD--NJtYM",
+      authDomain: "hackps-dfd92.firebaseapp.com",
+      databaseURL: "https://hackps-dfd92.firebaseio.com",
+      projectId: "hackps-dfd92",
+      storageBucket: "hackps-dfd92.appspot.com",
+      messagingSenderId: "750335257696",
+      appId: "1:750335257696:web:eac637993f8efcce6e6705",
+      measurementId: "G-20NWN22VK7"
 
     })
   }
