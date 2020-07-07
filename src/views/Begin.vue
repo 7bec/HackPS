@@ -14,9 +14,10 @@
       ons-button.font3.custom-button1(@click='pushPortoSocial' style='margin-bottom: 10px; min-width: 270px;') Porto social
     v-ons-row(width='100%' vertical-align='bottom' style=' justify-content: center; text-align: center')
       ons-button.font3.custom-button2(@click='pushProjetoSocial' style='margin-bottom: 10px; min-width: 270px;') Projeto social
-    v-ons-row
-      ons-button.font1.button-text(@click='WppMessage'   modifier='quiet' style='width: 100%; text-align: center;')
-        | Criar conta
+    v-ons-row(width='100%' style='position: absolute; bottom: 0; margin-bottom: 20px')
+          v-ons-row(style='justify-content: center;')
+            v-ons-icon(@click='google' icon='fa-google'  style='margin-right:30px; color:#e7c34e' size='22px')
+            v-ons-icon(@click='facebook' icon='fa-facebook' style='color: #1E90FF	;' size='22px')
 </template>
 
 <script>
